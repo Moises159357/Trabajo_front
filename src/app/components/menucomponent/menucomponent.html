@@ -1,0 +1,17 @@
+<div class="container">
+  <mat-toolbar>
+    <button matButton routerLink="/recetas/listar" aria-label="Inicio">
+      <mat-icon fontIcon="home"></mat-icon>
+    </button>
+    <button matButton [matMenuTriggerFor]="menuRecetas">Recetas</button>
+    <mat-menu #menuRecetas="matMenu">
+      <button mat-menu-item routerLink="/recetas/listar">Listar</button>
+      <button mat-menu-item routerLink="/recetas/insertar">Insertar</button>
+    </mat-menu>
+    <button matButton [matMenuTriggerFor]="menuLentes">Lentes</button>
+    <mat-menu #menuLentes="matMenu">
+      <button mat-menu-item routerLink="/lentes/listar">Listar</button>
+      <button mat-menu-item routerLink="/lentes/insertar">Insertar</button>
+    </mat-menu>
+  </mat-toolbar>
+</div>
