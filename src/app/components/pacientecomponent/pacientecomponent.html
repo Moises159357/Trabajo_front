@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="header-section">
+    <h2 class="page-title">Gestión de Pacientes - OpticVision</h2>
+  </div>
+  
+  <div class="card-table-container">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>DNI</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Género</th>
+          <th>Teléfono</th>
+          <th>Correo</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (pacientes().length > 0) {
+          @for (p of pacientes(); track p.dni) {
+            <tr>
+              <td>{{ p.dni }}</td>
+              <td>{{ p.nombre }}</td>
+              <td>{{ p.apellidos }}</td>
+              <td>{{ p.genero }}</td>
+              <td>{{ p.telefono }}</td>
+              <td>{{ p.correo }}</td>
+            </tr>
+          }
+        } @else {
+          <tr>
+            <td colspan="6" class="empty-state">
+              <p class="main-text">Cargando registros o sin conexión con el backend...</p>
+              <p class="sub-text">Por favor, verifique su conexión o intente nuevamente más tarde.</p>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

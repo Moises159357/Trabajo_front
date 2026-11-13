@@ -1,0 +1,89 @@
+/* Contenedor general */
+.container {
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+}
+
+/* Encabezado con el tono verde principal de OpticVision */
+.header-section {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  color: #1e3a2f; /* Verde oscuro elegante / militar profesional */
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Contenedor tipo tarjeta blanca con sombra sutil para la tabla */
+.card-table-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+/* Estilos generales de la tabla */
+table.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* Cabecera de la tabla */
+table.custom-table th {
+  background-color: #408554;
+  color: #465c5e;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Celdas del cuerpo */
+table.custom-table td {
+  padding: 16px 20px;
+  color: #334155;
+  font-size: 14px;
+  border-bottom: 1px solid #f1f9f4;
+}
+
+/* Efecto hover en las filas con un verde muy suave (#f0fdf4 es verde menta claro) */
+table.custom-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+table.custom-table tbody tr:hover {
+  background-color: #f0fdf4 !important; /* Tono verde suave ideal para salud/óptica */
+}
+
+/* Quitar borde inferior en la última fila */
+table.custom-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Estado vacío o de carga */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px !important;
+  background-color: #ffffff;
+}
+
+.empty-state .main-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #475569;
+  margin: 0;
+}
+
+.empty-state .sub-text {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-top: 6px;
+}
