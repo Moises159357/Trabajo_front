@@ -1,0 +1,87 @@
+<main class="page">
+  <header class="page-header">
+    <div>
+      <h1>Detalles del historial</h1>
+      <p>Relación entre el historial, sus recetas, tratamientos, intervenciones y lentes.</p>
+    </div>
+    <div class="header-actions">
+      <button mat-stroked-button type="button" routerLink="/detalles/insertar">
+        Agregar detalle
+      </button>
+      <button mat-stroked-button type="button" (click)="cargarDetalles()" [disabled]="cargando">
+        Actualizar lista
+      </button>
+    </div>
+  </header>
+
+  @if (error) {
+    <p class="notice error" role="alert">{{ error }}</p>
+  }
+
+  <section class="table-card" aria-labelledby="table-title">
+    <h2 id="table-title">Registros relacionados</h2>
+    @if (cargando) {
+      <p class="empty-state" role="status">Cargando detalles…</p>
+    } @else if (detalles.length === 0) {
+      <p class="empty-state">No hay detalles para mostrar.</p>
+    } @else {
+      <div class="table-scroll">
+        <table mat-table [dataSource]="detalles">
+          <ng-container matColumnDef="historial">
+            <th mat-header-cell *matHeaderCellDef>Historial</th>
+            <td mat-cell *matCellDef="let detalle">#{{ detalle.idHistorial }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="receta">
+            <th mat-header-cell *matHeaderCellDef>Receta</th>
+            <td mat-cell *matCellDef="let detalle">{{ nombreReceta(detalle.idReceta) }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="tratamiento">
+            <th mat-header-cell *matHeaderCellDef>Tratamiento</th>
+            <td mat-cell *matCellDef="let detalle">#{{ detalle.idTratamiento }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="intervencion">
+            <th mat-header-cell *matHeaderCellDef>Intervención</th>
+            <td mat-cell *matCellDef="let detalle">#{{ detalle.idIntervencion }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="lente">
+            <th mat-header-cell *matHeaderCellDef>Lente</th>
+            <td mat-cell *matCellDef="let detalle">{{ nombreLente(detalle.idLente) }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="observaciones">
+            <th mat-header-cell *matHeaderCellDef>Observaciones</th>
+            <td mat-cell *matCellDef="let detalle">{{ detalle.observaciones || '—' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let detalle" class="actions-cell">
+              <button
+                mat-button
+                type="button"
+                [routerLink]="['/detalles/editar', detalle.idDetalle]"
+              >
+                Editar
+              </button>
+              <button
+                mat-button
+                type="button"
+                class="delete-button"
+                (click)="eliminar(detalle)"
+              >
+                Eliminar
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    }
+  </section>
+</main>

@@ -3,19 +3,11 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-<<<<<<< HEAD
     "analytics": "289b2af9-dc60-42cd-9a6b-75917bcd9461"
   },
   "newProjectRoot": "projects",
   "projects": {
     "frontend-app": {
-=======
-    "analytics": "690c2f0c-5463-4f78-b3ff-07dbebb4a2c3"
-  },
-  "newProjectRoot": "projects",
-  "projects": {
-    "OPTICVISION": {
->>>>>>> origin/Edward_Gonzales
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -33,9 +25,6 @@
                 "input": "public"
               }
             ],
-<<<<<<< HEAD
-            "styles": ["src/styles.css"]
-=======
             "styles": ["src/material-theme.scss", "src/styles.css"],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -45,7 +34,6 @@
             "ssr": {
               "entry": "src/server.ts"
             }
->>>>>>> origin/Edward_Gonzales
           },
           "configurations": {
             "production": {
@@ -66,9 +54,6 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-<<<<<<< HEAD
-              "sourceMap": true
-=======
               "sourceMap": true,
               "fileReplacements": [
                 {
@@ -76,7 +61,6 @@
                   "with": "src/environments/environment.development.ts"
                 }
               ]
->>>>>>> origin/Edward_Gonzales
             }
           },
           "defaultConfiguration": "production"
@@ -85,17 +69,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-<<<<<<< HEAD
               "buildTarget": "frontend-app:build:production"
             },
             "development": {
               "buildTarget": "frontend-app:build:development"
-=======
-              "buildTarget": "OPTICVISION:build:production"
-            },
-            "development": {
-              "buildTarget": "OPTICVISION:build:development"
->>>>>>> origin/Edward_Gonzales
             }
           },
           "defaultConfiguration": "development"

@@ -2,11 +2,12 @@ import { Component, OnInit, inject, signal, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { PacienteService } from '../../services/pacienteservice';
 import { Paciente } from '../../models/Paciente';
+import { Menucomponent } from '../menucomponent/menucomponent';
 
 @Component({
   selector: 'app-paciente',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Menucomponent],
   templateUrl: './pacientecomponent.html',
   styleUrls: ['./pacientecomponent.css']
 })
