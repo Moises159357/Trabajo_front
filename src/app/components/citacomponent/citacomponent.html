@@ -1,0 +1,30 @@
+<div class="container" style="padding: 24px; max-width: 600px; margin: auto;">
+  <h2 style="color: #008B8B;">Agendar Cita Médica - OpticVision</h2>
+  
+  <form style="display: flex; flex-direction: column; gap: 16px;">
+    
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>ID Paciente</mat-label>
+      <input matInput placeholder="Ej. 1" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>ID Oftalmólogo</mat-label>
+      <input matInput placeholder="Ej. 1" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Fecha y Hora de la Cita</mat-label>
+      <input matInput type="datetime-local" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Motivo de la Cita</mat-label>
+      <textarea matInput placeholder="Describa brevemente el motivo..."></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button style="background-color: #2E8B57; color: white; padding: 10px;">
+      Guardar Cita
+    </button>
+  </form>
+</div>

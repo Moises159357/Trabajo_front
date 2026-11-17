@@ -1,12 +1,21 @@
 {
+<<<<<<< HEAD
   "name": "frontend-app",
+=======
+  "name": "opticvision",
+>>>>>>> origin/Edward_Gonzales
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+<<<<<<< HEAD
     "test": "ng test"
+=======
+    "test": "ng test",
+    "serve:ssr:OPTICVISION": "node dist/OPTICVISION/server/server.mjs"
+>>>>>>> origin/Edward_Gonzales
   },
   "private": true,
   "packageManager": "npm@11.20.0",
@@ -18,14 +27,29 @@
     "@angular/forms": "^22.2.0",
     "@angular/material": "^22.2.6",
     "@angular/platform-browser": "^22.2.0",
+<<<<<<< HEAD
     "@angular/router": "^22.2.0",
+=======
+    "@angular/platform-server": "^22.2.0",
+    "@angular/router": "^22.2.0",
+    "@angular/ssr": "^22.2.3",
+    "express": "^5.1.0",
+>>>>>>> origin/Edward_Gonzales
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@angular/build": "^22.2.6",
     "@angular/cli": "^22.2.6",
     "@angular/compiler-cli": "^22.2.0",
+=======
+    "@angular/build": "^22.2.3",
+    "@angular/cli": "^22.2.3",
+    "@angular/compiler-cli": "^22.2.0",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.12.0",
+>>>>>>> origin/Edward_Gonzales
     "jsdom": "^30.0.0",
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",

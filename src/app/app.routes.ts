@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+<<<<<<< HEAD
 import { Recetascomponent } from './components/recetascomponent/recetascomponent';
 import { Rlistarcomponent } from './components/recetascomponent/rlistarcomponent/rlistarcomponent';
 import { Rinsertarcomponent } from './components/recetascomponent/rinsertarcomponent/rinsertarcomponent';
@@ -32,3 +33,19 @@ export const routes: Routes = [
 	},
 	{ path: '**', redirectTo: 'recetas' },
 ];
+=======
+import { PacienteComponent } from './components/pacientecomponent/pacientecomponent';
+
+export const routes: Routes = [
+  { 
+    path: '', 
+    redirectTo: 'pacientes', 
+    pathMatch: 'full' 
+  },
+  { 
+    path: 'pacientes',
+    component: PacienteComponent
+  }
+  // Agrega aquí más rutas hijas o componentes según necesites
+];
+>>>>>>> origin/Edward_Gonzales
