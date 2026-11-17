@@ -1,0 +1,67 @@
+<div class="container">
+    <div>
+        <h2>Registro de Pacientes</h2>
+    </div>
+    <div>
+        <form [formGroup]="formPaciente" (ngSubmit)="insertarPaciente()">
+            <mat-form-field class="example-full-width">
+                <mat-label>DNI</mat-label>
+                <input matInput placeholder="12345678" formControlName="dni">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Juan" formControlName="nombre">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Apellidos</mat-label>
+                <input matInput placeholder="Pérez Gómez" formControlName="apellidos">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Género</mat-label>
+                <mat-select formControlName="genero">
+                    <mat-option value="MASCULINO">Masculino</mat-option>
+                    <mat-option value="FEMENINO">Femenino</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Correo</mat-label>
+                <input matInput type="email" placeholder="juan@correo.com" formControlName="correo">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Dirección</mat-label>
+                <input matInput placeholder="Av. Principal 123" formControlName="direccion">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Teléfono</mat-label>
+                <input matInput placeholder="987654321" formControlName="telefono">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Fecha de Nacimiento</mat-label>
+                <input matInput [matDatepicker]="pickerNac" formControlName="nacimiento">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="pickerNac"></mat-datepicker-toggle>
+                <mat-datepicker #pickerNac></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Fecha de Inscripción</mat-label>
+                <input matInput [matDatepicker]="pickerIns" formControlName="inscripcion">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="pickerIns"></mat-datepicker-toggle>
+                <mat-datepicker #pickerIns></mat-datepicker>
+            </mat-form-field>
+            <br>
+
+            <button matButton type="submit">Guardar</button>
+
+        </form>
+        <p>{{ mensaje }}</p>
+    </div>
+</div>
