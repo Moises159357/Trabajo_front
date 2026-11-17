@@ -1,0 +1,31 @@
+<div>
+    <mat-toolbar>
+    <button matButton>
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+    </button>
+
+    <button matButton [matMenuTriggerFor]="menuCitas" style="color: antiquewhite;">Citas</button>
+    <mat-menu #menuCitas="matMenu">
+      <button mat-menu-item routerLink="/citas/listar">Listar</button>
+      <button mat-menu-item routerLink="/citas/insertar">Insertar</button>
+      <button mat-menu-item routerLink="/citas/buscar">Buscar</button>
+
+    </mat-menu>
+
+    <button matButton [matMenuTriggerFor]="menuPaciente" style="color: antiquewhite;">Paciente</button>
+    <mat-menu #menuPaciente="matMenu">
+      <button mat-menu-item routerLink="/paciente/listar">Listar</button>
+      <button mat-menu-item routerLink="/paciente/insertar">Insertar</button>
+      <button mat-menu-item routerLink="/paciente/buscar">Buscar</button>
+
+    </mat-menu>
+
+    <button matButton [matMenuTriggerFor]="menuOftalmologo" style="color: antiquewhite;">Oftalmologo</button>
+    <mat-menu #menuOftalmologo="matMenu">
+      <button mat-menu-item routerLink="/oftalmologo/listar">Listar</button>
+      <button mat-menu-item routerLink="/oftalmologo/insertar">Insertar</button>
+      <button mat-menu-item routerLink="/oftalmologo/buscar">Buscar</button>
+
+    </mat-menu>
+  </mat-toolbar>
+</div>
