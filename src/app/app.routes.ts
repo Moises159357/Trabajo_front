@@ -12,6 +12,9 @@ import { Citascomponent } from './components/citascomponent/citascomponent';
 import { CitasListarcomponent } from './components/citascomponent/citas-listarcomponent/citas-listarcomponent';
 import { CitasActualizarcomponent } from './components/citascomponent/citas-actualizarcomponent/citas-actualizarcomponent';
 import { CitasInsertarcomponent } from './components/citascomponent/citas-insertarcomponent/citas-insertarcomponent';
+import { CitasBuscarcomponent } from './components/citascomponent/citas-buscarcomponent/citas-buscarcomponent';
+import { Reportescomponent } from './components/reportescomponent/reportescomponent';
+import { ReporteCitascomponent } from './components/reportescomponent/reporte-citascomponent/reporte-citascomponent';
 
 export const routes: Routes = [
     {
@@ -87,6 +90,28 @@ export const routes: Routes = [
                 path: 'insertar',
                 component: CitasInsertarcomponent,
             },
+            {
+                path: 'buscar',
+                component: CitasBuscarcomponent
+            }
         ]
     },
+
+    {
+        path: 'reportes',
+        component: Reportescomponent,
+        children: [
+            {
+                path: '',
+                redirectTo: 'reportecitas',
+                pathMatch: 'full',
+            },
+            {
+                path: 'reportecitas',
+                component: ReporteCitascomponent
+            }
+        ]
+    }
+
+
 ];

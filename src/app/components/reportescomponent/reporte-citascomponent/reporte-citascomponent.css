@@ -1,0 +1,12 @@
+.container {
+  width: 80%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.grafico {
+  position: relative;
+  height: 350px;
+  width: 100%;
+  margin-bottom: 40px;
+}
