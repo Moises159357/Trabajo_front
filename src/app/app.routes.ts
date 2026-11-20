@@ -1,15 +1,9 @@
 import { Routes } from '@angular/router';
-import { PacienteComponent } from './components/pacientecomponent/pacientecomponent';
+import { Iniciocomponent } from './components/iniciocomponent/iniciocomponent';
 
 export const routes: Routes = [
-  { 
-    path: '', 
-    redirectTo: 'pacientes', 
-    pathMatch: 'full' 
-  },
-  { 
-    path: 'pacientes',
-    component: PacienteComponent
-  }
-  // Agrega aquí más rutas hijas o componentes según necesites
+  { path: '', component: Iniciocomponent },
+  { path: 'inicio', component: Iniciocomponent },
+  // Aquí irás agregando tus siguientes rutas (ej. pacientes, citas, etc.)
+  { path: '**', redirectTo: '' }
 ];
