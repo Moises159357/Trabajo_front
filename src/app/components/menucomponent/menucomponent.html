@@ -1,36 +1,48 @@
-<div>
-  <mat-toolbar>
-    <button matButton>
-      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+<div class="optic-navbar">
+  <div class="brand-area" routerLink="/home">
+    <mat-icon fontIcon="visibility" class="brand-icon"></mat-icon>
+    <div class="brand-text">
+      <span class="brand-title">OpticVision</span>
+      <span class="brand-sub">SALUD VISUAL</span>
+    </div>
+  </div>
+
+  <div class="nav-links">
+    <button mat-button routerLink="/" class="nav-btn home-btn">
+      <mat-icon fontIcon="home"></mat-icon>
+      <span>Inicio</span>
     </button>
 
-    <button matButton [matMenuTriggerFor]="menuCitas" style="color: antiquewhite">Citas</button>
-    <mat-menu #menuCitas="matMenu">
+    <button mat-button [matMenuTriggerFor]="menuCitas" class="nav-btn">
+      Citas
+    </button>
+    <mat-menu #menuCitas="matMenu" class="optic-menu">
       <button mat-menu-item routerLink="/citas/listar">Listar</button>
       <button mat-menu-item routerLink="/citas/insertar">Insertar</button>
       <button mat-menu-item routerLink="/citas/buscar">Buscar</button>
     </mat-menu>
 
-    <button matButton [matMenuTriggerFor]="menuPaciente" style="color: antiquewhite">
+    <button mat-button [matMenuTriggerFor]="menuPaciente" class="nav-btn">
       Paciente
     </button>
-    <mat-menu #menuPaciente="matMenu">
+    <mat-menu #menuPaciente="matMenu" class="optic-menu">
       <button mat-menu-item routerLink="/paciente/listar">Listar</button>
       <button mat-menu-item routerLink="/paciente/insertar">Insertar</button>
     </mat-menu>
 
-    <button matButton [matMenuTriggerFor]="menuOftalmologo" style="color: antiquewhite">
-      Oftalmologo
+    <button mat-button [matMenuTriggerFor]="menuOftalmologo" class="nav-btn">
+      Oftalmólogo
     </button>
-    <mat-menu #menuOftalmologo="matMenu">
+    <mat-menu #menuOftalmologo="matMenu" class="optic-menu">
       <button mat-menu-item routerLink="/oftalmologo/listar">Listar</button>
       <button mat-menu-item routerLink="/oftalmologo/insertar">Insertar</button>
     </mat-menu>
 
-    <button matButton [matMenuTriggerFor]="menuReport" style="color: antiquewhite">Reportes</button>
-    <mat-menu #menuReport="matMenu">
+    <button mat-button [matMenuTriggerFor]="menuReport" class="nav-btn accent-btn">
+      Reportes
+    </button>
+    <mat-menu #menuReport="matMenu" class="optic-menu">
       <button mat-menu-item routerLink="/reportes/reportecitas">Reporte citas</button>
-
     </mat-menu>
-  </mat-toolbar>
+  </div>
 </div>
