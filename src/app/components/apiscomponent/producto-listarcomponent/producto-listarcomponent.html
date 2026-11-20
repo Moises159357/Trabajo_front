@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Catálogo de Gafas</h2>
+  <div class="catalogo">
+    @for (p of productos; track p.id) {
+    <mat-card class="tarjeta">
+      <img mat-card-image [src]="p.thumbnail" [alt]="p.title">
+      <mat-card-header>
+        <mat-card-title>{{ p.title }}</mat-card-title>
+        <mat-card-subtitle>{{ p.brand }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ p.description }}</p>
+        <p><strong>$ {{ p.price }}</strong> · Puntuación: {{ p.rating }}</p>
+      </mat-card-content>
+    </mat-card>
+    }
+  </div>
+</div>

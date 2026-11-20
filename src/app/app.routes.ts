@@ -15,6 +15,8 @@ import { CitasInsertarcomponent } from './components/citascomponent/citas-insert
 import { CitasBuscarcomponent } from './components/citascomponent/citas-buscarcomponent/citas-buscarcomponent';
 import { Reportescomponent } from './components/reportescomponent/reportescomponent';
 import { ReporteCitascomponent } from './components/reportescomponent/reporte-citascomponent/reporte-citascomponent';
+import { Apiscomponent } from './components/apiscomponent/apiscomponent';
+import { ProductoListarcomponent } from './components/apiscomponent/producto-listarcomponent/producto-listarcomponent';
 
 export const routes: Routes = [
     {
@@ -111,7 +113,22 @@ export const routes: Routes = [
                 component: ReporteCitascomponent
             }
         ]
-    }
+    },
 
+    {
+        path:'apis',
+        component: Apiscomponent,
+        children: [
+            {
+                path: '',
+                redirectTo: 'productos',
+                pathMatch: 'full',
+            },
+            {
+                path: 'productos',
+                component: ProductoListarcomponent,
+            }
+        ]
+    }
 
 ];

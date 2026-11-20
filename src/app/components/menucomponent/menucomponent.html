@@ -13,34 +13,31 @@
       <span>Inicio</span>
     </button>
 
-    <button mat-button [matMenuTriggerFor]="menuCitas" class="nav-btn">
-      Citas
-    </button>
+    <button mat-button [matMenuTriggerFor]="menuCitas" class="nav-btn">Citas</button>
     <mat-menu #menuCitas="matMenu" class="optic-menu">
       <button mat-menu-item routerLink="/citas/listar">Listar</button>
       <button mat-menu-item routerLink="/citas/insertar">Insertar</button>
       <button mat-menu-item routerLink="/citas/buscar">Buscar</button>
     </mat-menu>
 
-    <button mat-button [matMenuTriggerFor]="menuPaciente" class="nav-btn">
-      Paciente
-    </button>
+    <button mat-button [matMenuTriggerFor]="menuPaciente" class="nav-btn">Paciente</button>
     <mat-menu #menuPaciente="matMenu" class="optic-menu">
       <button mat-menu-item routerLink="/paciente/listar">Listar</button>
       <button mat-menu-item routerLink="/paciente/insertar">Insertar</button>
     </mat-menu>
 
-    <button mat-button [matMenuTriggerFor]="menuOftalmologo" class="nav-btn">
-      Oftalmólogo
-    </button>
+    <button mat-button [matMenuTriggerFor]="menuOftalmologo" class="nav-btn">Oftalmólogo</button>
     <mat-menu #menuOftalmologo="matMenu" class="optic-menu">
       <button mat-menu-item routerLink="/oftalmologo/listar">Listar</button>
       <button mat-menu-item routerLink="/oftalmologo/insertar">Insertar</button>
     </mat-menu>
 
-    <button mat-button [matMenuTriggerFor]="menuReport" class="nav-btn accent-btn">
-      Reportes
-    </button>
+    <button mat-button [matMenuTriggerFor]="menuApis" class="nav-btn">Apis</button>
+    <mat-menu #menuApis="matMenu" class="optic-menu">
+      <button mat-menu-item routerLink="/apis/productos">Api productos</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="menuReport" class="nav-btn accent-btn">Reportes</button>
     <mat-menu #menuReport="matMenu" class="optic-menu">
       <button mat-menu-item routerLink="/reportes/reportecitas">Reporte citas</button>
     </mat-menu>
