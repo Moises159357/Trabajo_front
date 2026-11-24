@@ -1,0 +1,105 @@
+
+<div class="container">
+  <h2>Lista de Tratamientos</h2>
+
+  <div class="tabla-container">
+
+    @if(dataSource.length > 0) {
+
+    <!-- Tabla -->
+    <table mat-table [dataSource]="dataSource" class="mat-shadow-2">
+
+      <!-- ID -->
+      <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.idTratamiento}}
+        </td>
+      </ng-container>
+
+      <!-- NOMBRE -->
+      <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.nombre}}
+        </td>
+      </ng-container>
+
+      <!-- TIPO -->
+      <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef> Tipo </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.tipo}}
+        </td>
+      </ng-container>
+
+      <!-- DURACION -->
+      <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef> Duración (Días) </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.duracionDias}}
+        </td>
+      </ng-container>
+
+      <!-- ESTADO -->
+      <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.estado}}
+        </td>
+      </ng-container>
+
+      <!-- FECHA DE REGISTRO -->
+      <ng-container matColumnDef="c6">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Registro </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.fechaRegistro | date:'dd/MM/yyyy'}}
+        </td>
+      </ng-container>
+
+      <!-- INDICACIONES -->
+      <ng-container matColumnDef="c7">
+        <th mat-header-cell *matHeaderCellDef> Indicaciones </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.indicaciones}}
+        </td>
+      </ng-container>
+
+      <!-- ELIMINAR -->
+      <ng-container matColumnDef="c8">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element">
+
+          <button matIconButton class="btn-eliminar"
+            (click)="eliminarTratamiento(element.idTratamiento)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </td>
+      </ng-container>
+
+      <!-- EDITAR -->
+      <ng-container matColumnDef="c9">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element">
+
+          <button mat-button class="btn-editar"
+            [routerLink]="['/tratamiento/editar', element.idTratamiento]">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+        </td>
+      </ng-container>
+
+      <!-- FILAS -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    } @else {
+      <p>No hay tratamientos disponibles.</p>
+    }
+
+  </div>
+</div>

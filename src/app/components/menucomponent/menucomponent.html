@@ -27,5 +27,21 @@
       <button mat-menu-item routerLink="/oftalmologo/buscar">Buscar</button>
 
     </mat-menu>
+
+    <button matButton [matMenuTriggerFor]="menuIntervencion" style="color: antiquewhite;">Intervencion</button>
+    <mat-menu #menuIntervencion="matMenu">
+      <button mat-menu-item routerLink="/intervencion/listar">Listar</button>
+      <button mat-menu-item routerLink="/intervencion/insertar">Insertar</button>
+      <button mat-menu-item routerLink="/intervencion/buscar">Buscar</button>
+
+    </mat-menu>
+
+    <button matButton [matMenuTriggerFor]="menuTratamiento" style="color: antiquewhite;">Tratamiento</button>
+    <mat-menu #menuTratamiento="matMenu">
+      <button mat-menu-item routerLink="/tratamiento/listar">Listar</button>
+      <button mat-menu-item routerLink="/tratamiento/insertar">Insertar</button>
+      <button mat-menu-item routerLink="/tratamiento/buscar">Buscar</button>
+
+    </mat-menu>
   </mat-toolbar>
 </div>
