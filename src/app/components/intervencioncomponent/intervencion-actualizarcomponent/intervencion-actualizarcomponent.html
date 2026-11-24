@@ -1,0 +1,75 @@
+
+<div class="container">
+    <div>
+        <h2>Formulario de Actualización de Intervenciones</h2>
+    </div>
+
+    <div>
+        @if (formIntervencion) {
+        <form [formGroup]="formIntervencion" (ngSubmit)="actualizarIntervencion()">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Código</mat-label>
+                <input matInput type="number"
+                    formControlName="codigo" readonly>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>ID de Venta</mat-label>
+                <input matInput type="number"
+                    formControlName="idVenta">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Tipo de Intervención</mat-label>
+                <input matInput placeholder="Ingrese el tipo"
+                    formControlName="tipo">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Fecha de Intervención</mat-label>
+                <input matInput [matDatepicker]="picker"
+                    formControlName="fecha">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput
+                    placeholder="Ingrese la descripción"
+                    formControlName="descripcion"></textarea>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Indicaciones</mat-label>
+                <textarea matInput
+                    placeholder="Ingrese las indicaciones"
+                    formControlName="indicaciones"></textarea>
+            </mat-form-field>
+            <br>
+
+            <button matButton type="submit"
+                [disabled]="cargando || guardando">
+                Guardar
+            </button>
+
+        </form>
+        }
+
+        @if (cargando) {
+            <p>Cargando intervención...</p>
+        }
+
+        @if (mensaje) {
+            <p>{{ mensaje }}</p>
+        }
+
+    </div>
+</div>

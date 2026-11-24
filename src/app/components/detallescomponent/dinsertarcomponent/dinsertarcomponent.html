@@ -1,0 +1,94 @@
+<main class="page">
+  <section class="form-card">
+    <header class="form-header">
+      <div>
+        <h1>Agregar detalle</h1>
+        <p>Relaciona el historial con una receta, un lente y sus referencias clínicas.</p>
+      </div>
+      <a mat-button routerLink="/detalles/listar">Volver a la lista</a>
+    </header>
+
+    <p class="form-hint">
+      Los IDs de historial, tratamiento e intervención se ingresan manualmente.
+    </p>
+
+    <form [formGroup]="formulario" (ngSubmit)="guardar()">
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>ID del historial</mat-label>
+          <input matInput type="number" min="1" formControlName="idHistorial" />
+          @if (formulario.controls.idHistorial.hasError('min') && formulario.controls.idHistorial.touched) {
+            <mat-error>Ingresa un ID mayor que cero.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Receta</mat-label>
+          <mat-select formControlName="idReceta">
+            @for (receta of recetas; track receta.idReceta) {
+              <mat-option [value]="receta.idReceta">
+                #{{ receta.idReceta }} · {{ receta.fechaInicio }} – {{ receta.fechaFin }}
+              </mat-option>
+            }
+          </mat-select>
+          @if (formulario.controls.idReceta.hasError('min') && formulario.controls.idReceta.touched) {
+            <mat-error>Selecciona una receta.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>ID del tratamiento</mat-label>
+          <input matInput type="number" min="1" formControlName="idTratamiento" />
+          @if (formulario.controls.idTratamiento.hasError('min') && formulario.controls.idTratamiento.touched) {
+            <mat-error>Ingresa un ID mayor que cero.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>ID de la intervención</mat-label>
+          <input matInput type="number" min="1" formControlName="idIntervencion" />
+          @if (formulario.controls.idIntervencion.hasError('min') && formulario.controls.idIntervencion.touched) {
+            <mat-error>Ingresa un ID mayor que cero.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Lente</mat-label>
+          <mat-select formControlName="idLente">
+            @for (lente of lentes; track lente.idLente) {
+              <mat-option [value]="lente.idLente">
+                #{{ lente.idLente }} · {{ lente.modelo }} ({{ lente.marca }})
+              </mat-option>
+            }
+          </mat-select>
+          @if (formulario.controls.idLente.hasError('min') && formulario.controls.idLente.touched) {
+            <mat-error>Selecciona un lente.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="observaciones">
+          <mat-label>Observaciones</mat-label>
+          <textarea matInput rows="3" maxlength="800" formControlName="observaciones"></textarea>
+          <mat-hint align="end">{{ formulario.controls.observaciones.value.length }}/800</mat-hint>
+          @if (formulario.controls.observaciones.hasError('maxlength')) {
+            <mat-error>Máximo 800 caracteres.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="form-actions">
+        <button mat-flat-button type="submit" [disabled]="guardando">
+          {{ guardando ? 'Guardando…' : 'Crear detalle' }}
+        </button>
+        <a mat-button routerLink="/detalles/listar">Cancelar</a>
+      </div>
+    </form>
+
+    @if (mensaje) {
+      <p class="notice success" role="status">{{ mensaje }}</p>
+    }
+    @if (error) {
+      <p class="notice error" role="alert">{{ error }}</p>
+    }
+  </section>
+</main>

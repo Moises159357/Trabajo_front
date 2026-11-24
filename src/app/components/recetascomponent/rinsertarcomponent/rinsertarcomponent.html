@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>Registro de Recetas</h2>
+  <form [formGroup]="formReceta" (ngSubmit)="insertarReceta()">
+    <mat-form-field class="example-full-width">
+      <mat-label>Fecha de inicio</mat-label>
+      <input matInput type="date" formControlName="fechaInicio" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Fecha de fin</mat-label>
+      <input matInput type="date" formControlName="fechaFin" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Indicaciones</mat-label>
+      <textarea matInput rows="5" formControlName="indicaciones"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Guardar</button>
+  </form>
+  <p>{{ mensaje }}</p>
+</div>

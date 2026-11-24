@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Lista de Lentes</h2>
+  @if (dataSource.length > 0) {
+    <table mat-table [dataSource]="dataSource" class="mat-shadow-2">
+      <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.idLente }}</td>
+      </ng-container>
+      <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef>Modelo</th>
+        <td mat-cell *matCellDef="let element">{{ element.modelo }}</td>
+      </ng-container>
+      <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef>Marca</th>
+        <td mat-cell *matCellDef="let element">{{ element.marca }}</td>
+      </ng-container>
+      <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef>Precio</th>
+        <td mat-cell *matCellDef="let element">S/ {{ element.precio }}</td>
+      </ng-container>
+      <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let element">
+          <button matIconButton class="btn-eliminar" (click)="eliminarLente(element.idLente)" aria-label="Eliminar lente">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="c6">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button [routerLink]="['/lentes/editar', element.idLente]" aria-label="Editar lente">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  } @else {
+    <p>No hay lentes disponibles.</p>
+  }
+</div>

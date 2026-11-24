@@ -1,0 +1,59 @@
+
+<div class="container">
+    <div>
+        <h2>Registro de Intervenciones</h2>
+    </div>
+
+    <div>
+        <form [formGroup]="formIntervencion" (ngSubmit)="insertarIntervencion()">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>ID de Venta</mat-label>
+                <input matInput type="number" placeholder="1"
+                    formControlName="idVenta">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Tipo de Intervención</mat-label>
+                <input matInput placeholder="Tipo de intervención"
+                    formControlName="tipo">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Fecha de Intervención</mat-label>
+                <input matInput [matDatepicker]="picker"
+                    formControlName="fecha">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker">
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput
+                    placeholder="Ingrese la descripción de la intervención"
+                    formControlName="descripcion">
+                </textarea>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Indicaciones</mat-label>
+                <textarea matInput
+                    placeholder="Ingrese las indicaciones"
+                    formControlName="indicaciones">
+                </textarea>
+            </mat-form-field>
+            <br>
+
+            <button matButton type="submit">Guardar</button>
+
+        </form>
+
+        <p>{{ mensaje }}</p>
+    </div>
+</div>

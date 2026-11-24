@@ -1,0 +1,46 @@
+<div class="container">
+  <div>
+    <h2>Registro de Oftalmólogos</h2>
+  </div>
+  <div>
+    <form [formGroup]="formOftalmologo" (ngSubmit)="insertarOftalmologo()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombres</mat-label>
+        <input matInput placeholder="Juan" formControlName="nombres" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Apellidos</mat-label>
+        <input matInput placeholder="Pérez Gómez" formControlName="apellidos" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Colegiatura</mat-label>
+        <input matInput formControlName="colegiatura" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Especialidad</mat-label>
+        <input matInput formControlName="especialidad" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Correo</mat-label>
+        <input matInput type="email" formControlName="correo" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="telefono" />
+      </mat-form-field>
+      <br />
+      <mat-checkbox class="example-margin" formControlName="disponibilidad"
+        >Disponible</mat-checkbox
+      >
+      <br />
+
+      <button matButton type="submit">Guardar</button>
+    </form>
+    <p>{{ mensaje }}</p>
+  </div>
+</div>
