@@ -1,18 +1,20 @@
 <div class="container">
   <h2>Total de Citas por Paciente</h2>
   <div class="grafico">
-    <canvas baseChart [type]="chartType1" [data]="chartData1" [options]="chartOptions"> </canvas>
+    <canvas baseChart [type]="chartType1" [data]="chartData1" [options]="chartOptions"></canvas>
   </div>
 
   <hr />
 
   <h2>Oftalmólogo Frecuente por Paciente</h2>
   <div class="grafico">
-    <canvas baseChart [type]="chartType2" [data]="chartData2" [options]="chartOptions"> </canvas>
+    <canvas baseChart [type]="chartType2" [data]="chartData2" [options]="chartOptions"></canvas>
+  </div>
 
-    <h2>3. Distribución de Citas por Oftalmólogo</h2>
-    <div class="grafico">
-      <canvas baseChart [type]="chartType3" [data]="chartData3" [options]="chartOptions"> </canvas>
-    </div>
+  <hr />
+
+  <h2>Distribución de Citas por Oftalmólogo</h2>
+  <div class="grafico">
+    <canvas baseChart [type]="chartType3" [data]="chartData3" [options]="chartOptions"></canvas>
   </div>
 </div>

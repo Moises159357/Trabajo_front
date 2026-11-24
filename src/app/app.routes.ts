@@ -33,6 +33,10 @@ import { Detallescomponent } from './components/detallescomponent/detallescompon
 import { Dlistarcomponent } from './components/detallescomponent/dlistarcomponent/dlistarcomponent';
 import { Dinsertarcomponent } from './components/detallescomponent/dinsertarcomponent/dinsertarcomponent';
 import { Dactualizarcomponent } from './components/detallescomponent/dactualizarcomponent/dactualizarcomponent';
+import { Apiscomponent } from './components/apiscomponent/apiscomponent';
+import { ProductoListarcomponent } from './components/apiscomponent/producto-listarcomponent/producto-listarcomponent';
+import { Reportescomponent } from './components/reportescomponent/reportescomponent';
+import { ReporteCitascomponent } from './components/reportescomponent/reporte-citascomponent/reporte-citascomponent';
 
 export const routes: Routes = [
     {
@@ -193,6 +197,24 @@ export const routes: Routes = [
             { path: 'listar', component: Dlistarcomponent },
             { path: 'insertar', component: Dinsertarcomponent },
             { path: 'editar/:id', component: Dactualizarcomponent },
+        ],
+    },
+
+    {
+        path: 'apis',
+        component: Apiscomponent,
+        children: [
+            { path: '', redirectTo: 'productos', pathMatch: 'full' },
+            { path: 'productos', component: ProductoListarcomponent },
+        ],
+    },
+
+    {
+        path: 'reportes',
+        component: Reportescomponent,
+        children: [
+            { path: '', redirectTo: 'reportecitas', pathMatch: 'full' },
+            { path: 'reportecitas', component: ReporteCitascomponent },
         ],
     },
 ];
