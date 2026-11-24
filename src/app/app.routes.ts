@@ -100,18 +100,26 @@ export const routes: Routes = [
     },
 
     {
-        path: 'reportes',
-        component: Reportescomponent,
-        children: [
+        path:'intervencion',
+        component: Intervencioncomponent,
+        children:[
             {
-                path: '',
-                redirectTo: 'reportecitas',
+                path:'',
+                redirectTo:'listar',
                 pathMatch: 'full',
             },
             {
-                path: 'reportecitas',
-                component: ReporteCitascomponent
-            }
+                path:'listar',
+                component: IntervencionListarcomponent,
+            },
+            {
+                path:'editar/:id',
+                component: IntervencionActualizarcomponent,
+            },
+            {
+                path: 'insertar',
+                component: IntervencionInsertarcomponent,
+            },
         ]
     },
 
@@ -131,4 +139,27 @@ export const routes: Routes = [
         ]
     }
 
+    {
+        path:'tratamiento',
+        component: Tratamientocomponent,
+        children:[
+            {
+                path:'',
+                redirectTo:'listar',
+                pathMatch: 'full',
+            },
+            {
+                path:'listar',
+                component: TratamientoListarcomponent,
+            },
+            {
+                path:'editar/:id',
+                component: TratamientoActualizarcomponent,
+            },
+            {
+                path: 'insertar',
+                component: TratamientoInsertarcomponent,
+            },
+        ]
+    },
 ];

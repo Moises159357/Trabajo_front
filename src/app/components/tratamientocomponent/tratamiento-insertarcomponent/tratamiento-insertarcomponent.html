@@ -1,0 +1,64 @@
+
+<div class="container">
+    <div>
+        <h2>Registro de Tratamientos</h2>
+    </div>
+
+    <div>
+        <form [formGroup]="formTratamiento" (ngSubmit)="insertarTratamiento()">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre del Tratamiento</mat-label>
+                <input matInput placeholder="Nombre del tratamiento"
+                    formControlName="nombre">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Tipo de Tratamiento</mat-label>
+                <input matInput placeholder="Tipo de tratamiento"
+                    formControlName="tipo">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Duración en Días</mat-label>
+                <input matInput type="number" placeholder="7"
+                    formControlName="duracionDias">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Estado</mat-label>
+                <input matInput placeholder="Estado del tratamiento"
+                    formControlName="estado">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Fecha de Registro</mat-label>
+                <input matInput [matDatepicker]="picker"
+                    formControlName="fechaRegistro">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker">
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Indicaciones</mat-label>
+                <textarea matInput
+                    placeholder="Ingrese las indicaciones del tratamiento"
+                    formControlName="indicaciones">
+                </textarea>
+            </mat-form-field>
+            <br>
+
+            <button matButton type="submit">Guardar</button>
+
+        </form>
+
+        <p>{{ mensaje }}</p>
+    </div>
+</div>
