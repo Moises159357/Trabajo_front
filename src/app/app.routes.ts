@@ -12,14 +12,11 @@ import { Citascomponent } from './components/citascomponent/citascomponent';
 import { CitasListarcomponent } from './components/citascomponent/citas-listarcomponent/citas-listarcomponent';
 import { CitasActualizarcomponent } from './components/citascomponent/citas-actualizarcomponent/citas-actualizarcomponent';
 import { CitasInsertarcomponent } from './components/citascomponent/citas-insertarcomponent/citas-insertarcomponent';
-import { Tratamientocomponent } from './components/tratamientocomponent/tratamientocomponent';
-import { Intervencioncomponent } from './components/intervencioncomponent/intervencioncomponent';
-import { IntervencionActualizarcomponent } from './components/intervencioncomponent/intervencion-actualizarcomponent/intervencion-actualizarcomponent';
-import { IntervencionListarcomponent } from './components/intervencioncomponent/intervencion-listarcomponent/intervencion-listarcomponent';
-import { IntervencionInsertarcomponent } from './components/intervencioncomponent/intervencion-insertarcomponent/intervencion-insertarcomponent';
-import { TratamientoListarcomponent } from './components/tratamientocomponent/tratamiento-listarcomponent/tratamiento-listarcomponent';
-import { TratamientoActualizarcomponent } from './components/tratamientocomponent/tratamiento-actualizarcomponent/tratamiento-actualizarcomponent';
-import { TratamientoInsertarcomponent } from './components/tratamientocomponent/tratamiento-insertarcomponent/tratamiento-insertarcomponent';
+import { CitasBuscarcomponent } from './components/citascomponent/citas-buscarcomponent/citas-buscarcomponent';
+import { Reportescomponent } from './components/reportescomponent/reportescomponent';
+import { ReporteCitascomponent } from './components/reportescomponent/reporte-citascomponent/reporte-citascomponent';
+import { Apiscomponent } from './components/apiscomponent/apiscomponent';
+import { ProductoListarcomponent } from './components/apiscomponent/producto-listarcomponent/producto-listarcomponent';
 
 export const routes: Routes = [
     {
@@ -125,6 +122,22 @@ export const routes: Routes = [
             },
         ]
     },
+
+    {
+        path:'apis',
+        component: Apiscomponent,
+        children: [
+            {
+                path: '',
+                redirectTo: 'productos',
+                pathMatch: 'full',
+            },
+            {
+                path: 'productos',
+                component: ProductoListarcomponent,
+            }
+        ]
+    }
 
     {
         path:'tratamiento',
