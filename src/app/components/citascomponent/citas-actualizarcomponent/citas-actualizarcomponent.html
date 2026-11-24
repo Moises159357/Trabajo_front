@@ -1,1 +1,46 @@
-<p>citas-actualizarcomponent works!</p>
+<div class="container">
+    <div>
+        <h2>Formulario de Actualización de Citas</h2>
+    </div>
+    <div>
+        <form [formGroup]="formCitas" (ngSubmit)="actualizarCitas()">
+            <mat-form-field class="example-full-width">
+                <mat-label>Código</mat-label>
+                <input matInput type="number" formControlName="codigo" readonly>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Fecha de la Cita</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="fecha">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Estado</mat-label>
+                <input matInput placeholder="Pendiente" formControlName="estado">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Motivo</mat-label>
+                <textarea matInput formControlName="motivo"></textarea>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>ID Paciente</mat-label>
+                <input matInput type="number" formControlName="paciente">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>ID Oftalmólogo</mat-label>
+                <input matInput type="number" formControlName="oftalmologo">
+            </mat-form-field>
+            <br>
+
+            <button matButton type="submit">Guardar</button>
+
+        </form>
+        <p>{{ mensaje }}</p>
+    </div>
+</div>

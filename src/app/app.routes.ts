@@ -95,6 +95,10 @@ export const routes: Routes = [
                 path: 'insertar',
                 component: CitasInsertarcomponent,
             },
+            {
+                path: 'buscar',
+                component: CitasBuscarcomponent
+            }
         ]
     },
 
