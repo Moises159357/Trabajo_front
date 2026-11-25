@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Intervencionservice } from '../../../services/intervencionservice';
 import { IntervencionDTO } from '../../../models/IntervencionDTO';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-intervencion-insertarcomponent',
@@ -17,6 +18,7 @@ import { IntervencionDTO } from '../../../models/IntervencionDTO';
     MatDatepickerModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatSelectModule
   ],
   templateUrl: './intervencion-insertarcomponent.html',
   styleUrl: './intervencion-insertarcomponent.css',

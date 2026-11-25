@@ -1,0 +1,94 @@
+
+<div class="container">
+
+    <h2>Intervenciones por Rango de Fechas</h2>
+
+    <form [formGroup]="formFecha"
+        (ngSubmit)="obtenerIntervencionesPorFecha()"
+        class="filtros">
+
+        <mat-form-field>
+            <mat-label>Fecha de Inicio</mat-label>
+            <input matInput [matDatepicker]="pickerInicio"
+                formControlName="fechaInicio">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+            <mat-datepicker #pickerInicio></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Fecha de Fin</mat-label>
+            <input matInput [matDatepicker]="pickerFin"
+                formControlName="fechaFin">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="pickerFin"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFin></mat-datepicker>
+        </mat-form-field>
+
+        <button matButton type="submit">
+            Generar Reporte
+        </button>
+
+    </form>
+
+    @if (listaFecha.length > 0) {
+
+        <p>Total de intervenciones: {{listaFecha.length}}</p>
+
+        <div class="grafico">
+            <canvas
+                baseChart
+                [type]="chartType1"
+                [data]="chartData1"
+                [options]="chartOptions">
+            </canvas>
+        </div>
+
+    }
+
+    <p>{{mensajeFecha}}</p>
+
+    <hr />
+
+    <h2>Intervenciones por Tipo</h2>
+
+    <form [formGroup]="formTipo"
+        (ngSubmit)="obtenerIntervencionesPorTipo()"
+        class="filtros">
+
+        <mat-form-field>
+            <mat-label>Tipo de Intervención</mat-label>
+            <mat-select formControlName="tipo">
+                <mat-option value="Diagnóstica">Diagnóstica</mat-option>
+                <mat-option value="Quirúrgica">Quirúrgica</mat-option>
+                <mat-option value="Láser">Láser</mat-option>
+                <mat-option value="Terapéutica">Terapéutica</mat-option>
+                <mat-option value="Preventiva">Preventiva</mat-option>
+                <mat-option value="Seguimiento">Seguimiento</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button matButton type="submit">
+            Generar Reporte
+        </button>
+
+    </form>
+
+    @if (listaTipo.length > 0) {
+
+        <p>Total de intervenciones: {{listaTipo.length}}</p>
+
+        <div class="grafico">
+            <canvas
+                baseChart
+                [type]="chartType2"
+                [data]="chartData2"
+                [options]="chartOptions">
+            </canvas>
+        </div>
+
+    }
+
+    <p>{{mensajeTipo}}</p>
+
+</div>

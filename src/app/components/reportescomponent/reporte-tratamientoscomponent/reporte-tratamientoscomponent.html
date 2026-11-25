@@ -1,0 +1,43 @@
+
+<div class="container">
+
+    <h2>Tratamientos por Estado</h2>
+
+    <form [formGroup]="formEstado"
+        (ngSubmit)="obtenerTratamientosPorEstado()"
+        class="filtros">
+
+        <mat-form-field>
+            <mat-label>Estado del Tratamiento</mat-label>
+            <mat-select formControlName="estado">
+                <mat-option value="Pendiente">Pendiente</mat-option>
+                <mat-option value="En curso">En curso</mat-option>
+                <mat-option value="Finalizado">Finalizado</mat-option>
+                <mat-option value="Cancelado">Cancelado</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button matButton type="submit">
+            Generar Reporte
+        </button>
+
+    </form>
+
+    @if (listaEstado.length > 0) {
+
+        <p>Total de tratamientos: {{listaEstado.length}}</p>
+
+        <div class="grafico">
+            <canvas
+                baseChart
+                [type]="chartType"
+                [data]="chartData"
+                [options]="chartOptions">
+            </canvas>
+        </div>
+
+    }
+
+    <p>{{mensajeEstado}}</p>
+
+</div>

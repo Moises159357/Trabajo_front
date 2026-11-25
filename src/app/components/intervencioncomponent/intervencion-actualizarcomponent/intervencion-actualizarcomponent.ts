@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-intervencion-actualizarcomponent',
@@ -16,7 +17,8 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   templateUrl: './intervencion-actualizarcomponent.html',
   styleUrl: './intervencion-actualizarcomponent.css',
