@@ -17,10 +17,6 @@ import { Reportescomponent } from './components/reportescomponent/reportescompon
 import { ReporteCitascomponent } from './components/reportescomponent/reporte-citascomponent/reporte-citascomponent';
 import { Apiscomponent } from './components/apiscomponent/apiscomponent';
 import { ProductoListarcomponent } from './components/apiscomponent/producto-listarcomponent/producto-listarcomponent';
-import { Tratamientocomponent } from './components/tratamientocomponent/tratamientocomponent';
-import { TratamientoListarcomponent } from './components/tratamientocomponent/tratamiento-listarcomponent/tratamiento-listarcomponent';
-import { TratamientoActualizarcomponent } from './components/tratamientocomponent/tratamiento-actualizarcomponent/tratamiento-actualizarcomponent';
-import { TratamientoInsertarcomponent } from './components/tratamientocomponent/tratamiento-insertarcomponent/tratamiento-insertarcomponent';
 import { Intervencioncomponent } from './components/intervencioncomponent/intervencioncomponent';
 import { IntervencionListarcomponent } from './components/intervencioncomponent/intervencion-listarcomponent/intervencion-listarcomponent';
 import { IntervencionActualizarcomponent } from './components/intervencioncomponent/intervencion-actualizarcomponent/intervencion-actualizarcomponent';
@@ -28,6 +24,12 @@ import { IntervencionInsertarcomponent } from './components/intervencioncomponen
 import { ChatComponent } from './components/apiscomponent/chat-component/chat-component';
 import { Logincomponent } from './components/logincomponent/logincomponent';
 import { authGuard } from './core/guards/auth-guard';
+import { Tratamientocomponent } from './components/tratamientocomponent/tratamientocomponent';
+import { TratamientoListarcomponent } from './components/tratamientocomponent/tratamiento-listarcomponent/tratamiento-listarcomponent';
+import { TratamientoActualizarcomponent } from './components/tratamientocomponent/tratamiento-actualizarcomponent/tratamiento-actualizarcomponent';
+import { TratamientoInsertarcomponent } from './components/tratamientocomponent/tratamiento-insertarcomponent/tratamiento-insertarcomponent';
+import { ReporteIntervencionescomponent } from './components/reportescomponent/reporte-intervencionescomponent/reporte-intervencionescomponent';
+import { ReporteTratamientoscomponent } from './components/reportescomponent/reporte-tratamientoscomponent/reporte-tratamientoscomponent';
 
 export const routes: Routes = [
   { path: 'login', component: Logincomponent },
@@ -138,6 +140,22 @@ export const routes: Routes = [
   },
 
   {
+    path: 'apis',
+    component: Apiscomponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'productos',
+        pathMatch: 'full',
+      },
+      {
+        path: 'productos',
+        component: ProductoListarcomponent,
+      },
+    ],
+  },
+
+  {
     path: 'tratamiento',
     component: Tratamientocomponent,
     children: [
@@ -160,35 +178,34 @@ export const routes: Routes = [
       },
     ],
   },
-
   {
     path: 'reportes',
+
     component: Reportescomponent,
+
     children: [
       {
         path: '',
+
         redirectTo: 'reportecitas',
+
         pathMatch: 'full',
       },
+
       {
         path: 'reportecitas',
+
         component: ReporteCitascomponent,
       },
-    ],
-  },
-
-  {
-    path: 'apis',
-    component: Apiscomponent,
-    children: [
       {
-        path: '',
-        redirectTo: 'productos',
-        pathMatch: 'full',
+        path: 'reporteintervenciones',
+
+        component: ReporteIntervencionescomponent,
       },
       {
-        path: 'productos',
-        component: ProductoListarcomponent,
+        path: 'reportetratamientos',
+
+        component: ReporteTratamientoscomponent,
       },
       {
         path: 'chat',
