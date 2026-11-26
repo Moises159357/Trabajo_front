@@ -1,23 +1,34 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CitasDTO } from '../../../models/CitasDTO';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { DatePipe } from '@angular/common';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { Citaservice } from '../../../services/citaservice';
 
 @Component({
-  imports: [MatInputModule, MatDatepickerModule, MatButtonModule, ReactiveFormsModule],
+  imports: [
+    DatePipe,
+    MatSelectModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+  ],
   selector: 'app-citas-actualizarcomponent',
   styleUrl: './citas-actualizarcomponent.css',
   templateUrl: './citas-actualizarcomponent.html',
   providers: [provideNativeDateAdapter()],
 })
-export class CitasActualizarcomponent {
+export class CitasActualizarcomponent implements OnInit{
   idCitas: any = null;
   formCitas!: FormGroup;
+  citaAnterior!: CitasDTO;
+  cargando: boolean = false;
   mensaje: string = '';
 
   constructor(
@@ -28,7 +39,7 @@ export class CitasActualizarcomponent {
     private cdr: ChangeDetectorRef,
   ) {}
 
-  ngOninit(): void {
+  ngOnInit(): void {
     // Recuperar ID desde la URL
     this.idCitas = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -45,68 +56,80 @@ export class CitasActualizarcomponent {
       estado: ['', Validators.required],
       motivo: ['', Validators.required],
       paciente: [0, [Validators.required, Validators.min(1)]],
-      oftalmologo: [0, [Validators.required, Validators.min(1)]]
+      oftalmologo: [0, [Validators.required, Validators.min(1)]],
     });
     this.buscarPorId();
   }
 
-  buscarPorId(): void{
+  buscarPorId(): void {
+    this.cargando = true;
+    this.mensaje = '';
+
     this.cS.listId(this.idCitas).subscribe({
-
       next: (data: CitasDTO) => {
-
         console.log('Cita encontrada:', data);
+        this.citaAnterior = data;
+        this.cargando = false;
+
+        let fechaParaPicker: Date | null = null;
+        if (data.fechaCita) {
+          const parsed = new Date(data.fechaCita);
+          fechaParaPicker = isNaN(parsed.getTime()) ? null : parsed;
+        }
 
         this.formCitas.patchValue({
           codigo: data.idCitas,
-          fecha: new Date(data.fechaCita + 'T00:00:00'),
+          fecha: fechaParaPicker,
           estado: data.estado,
           motivo: data.motivoCita,
           paciente: data.idPaciente,
-          oftalmologo: data.idOftalmologo
+          oftalmologo: data.idOftalmologo,
         });
 
+        this.cdr.detectChanges();
       },
-
       error: (error) => {
         console.error('Error al buscar la cita', error);
+        this.cargando = false;
         this.mensaje = 'No se encontró la cita';
-      }
-
+        this.cdr.detectChanges();
+      },
     });
-
   }
 
   actualizarCitas(): void {
-
     if (this.formCitas.invalid) {
       this.mensaje = 'Por favor complete todos los campos correctamente.';
       return;
     }
 
+    const fechaValor = this.formCitas.value.fecha;
+    const fechaDate: Date = fechaValor instanceof Date ? fechaValor : new Date(fechaValor);
+
     const dto = {
       idCitas: this.formCitas.value.codigo,
-      fechaCita: this.formCitas.value.fecha.toISOString().split('T')[0],
+      fechaCita: fechaDate,
       estado: this.formCitas.value.estado,
       motivoCita: this.formCitas.value.motivo,
       idPaciente: this.formCitas.value.paciente,
-      idOftalmologo: this.formCitas.value.oftalmologo
+      idOftalmologo: this.formCitas.value.oftalmologo,
     };
 
     this.cS.updateCitas(dto).subscribe({
-
       next: () => {
+        this.citaAnterior = {
+          ...this.citaAnterior,
+          ...dto,
+        };
         this.mensaje = 'Se actualizó correctamente';
-        this.cdr.detectChanges()
+        this.cdr.detectChanges();
         // this.router.navigate(['/citas/listar']);
       },
-
       error: (error) => {
         console.error(error);
         this.mensaje = 'Error al actualizar!!';
-      }
-
+        this.cdr.detectChanges();
+      },
     });
-
   }
 }

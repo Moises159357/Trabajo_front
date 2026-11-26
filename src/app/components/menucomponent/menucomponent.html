@@ -32,6 +32,18 @@
       <button mat-menu-item routerLink="/oftalmologo/insertar">Insertar</button>
     </mat-menu>
 
+    <button mat-button [matMenuTriggerFor]="menuIntervencion" class="nav-btn">Intervenciones</button>
+    <mat-menu #menuIntervencion="matMenu" class="optic-menu">
+      <button mat-menu-item routerLink="/intervencion/listar">Listar</button>
+      <button mat-menu-item routerLink="/intervencion/insertar">Insertar</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="menuTratamiento" class="nav-btn">Tratamientos</button>
+    <mat-menu #menuTratamiento="matMenu" class="optic-menu">
+      <button mat-menu-item routerLink="/tratamiento/listar">Listar</button>
+      <button mat-menu-item routerLink="/tratamiento/insertar">Insertar</button>
+    </mat-menu>
+
     <button mat-button [matMenuTriggerFor]="menuApis" class="nav-btn">Apis</button>
     <mat-menu #menuApis="matMenu" class="optic-menu">
       <button mat-menu-item routerLink="/apis/productos">Api productos</button>

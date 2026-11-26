@@ -3,10 +3,6 @@
   <div>
     @if (dataSource.length > 0) {
       <table mat-table [dataSource]="dataSource" class="mat-shadow-2">
-        <ng-container matColumnDef="c1">
-          <th mat-header-cell *matHeaderCellDef>ID</th>
-          <td mat-cell *matCellDef="let element">{{ element.idOftalmologo }}</td>
-        </ng-container>
 
         <ng-container matColumnDef="c2">
           <th mat-header-cell *matHeaderCellDef>Nombres</th>
@@ -23,11 +19,6 @@
           <td mat-cell *matCellDef="let element">{{ element.especialidad }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="c5">
-          <th mat-header-cell *matHeaderCellDef>Correo</th>
-          <td mat-cell *matCellDef="let element">{{ element.correo }}</td>
-        </ng-container>
-
         <ng-container matColumnDef="c6">
           <th mat-header-cell *matHeaderCellDef>Disponible</th>
           <td mat-cell *matCellDef="let element">{{ element.disponibilidad ? 'Sí' : 'No' }}</td>
@@ -37,9 +28,10 @@
           <th mat-header-cell *matHeaderCellDef>Eliminar</th>
           <td mat-cell *matCellDef="let element">
             <button
-              matIconButton
+              mat-icon-button
               class="btn-eliminar"
-              (click)="eliminarOftalmologo(element.idOftalmologo)"
+              title="Eliminar"
+              (click)="confirmarEliminacion(element.idOftalmologo)"
             >
               <mat-icon>delete</mat-icon>
             </button>
@@ -50,11 +42,26 @@
           <th mat-header-cell *matHeaderCellDef>Editar</th>
           <td mat-cell *matCellDef="let element">
             <button
-              matIconButton
+              mat-icon-button
               class="btn-editar"
+              title="Editar"
               [routerLink]="['/oftalmologo/editar', element.idOftalmologo]"
             >
               <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c9">
+          <th mat-header-cell *matHeaderCellDef>Ver perfil</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-icon-button
+              class="btn-ver"
+              title="Ver perfil"
+              (click)="verPerfil(element)"
+            >
+              <mat-icon>visibility</mat-icon>
             </button>
           </td>
         </ng-container>
@@ -66,4 +73,45 @@
       <p>No hay oftalmólogos disponibles.</p>
     }
   </div>
+
+  <!-- Ventana emergente de confirmación para eliminar -->
+  @if (mostrarConfirmacion) {
+    <div class="modal-backdrop">
+      <div class="modal-caja">
+        <h3>Confirmar eliminación</h3>
+        <p>¿Deseas eliminar a este oftalmólogo?</p>
+        <div class="modal-acciones">
+          <button
+            mat-raised-button
+            class="btn-confirmar-borrar"
+            (click)="ejecutarEliminacion()"
+          >
+            Sí, eliminar
+          </button>
+          <button mat-stroked-button (click)="cancelarEliminacion()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Ventana emergente de perfil (solo lectura) -->
+  @if (oftalmologoPerfil) {
+    <div class="modal-backdrop">
+      <div class="modal-caja perfil-caja">
+        <h3>Perfil del Oftalmólogo</h3>
+        <p><strong>ID:</strong> {{ oftalmologoPerfil.idOftalmologo }}</p>
+        <p><strong>Nombres:</strong> {{ oftalmologoPerfil.nombres }}</p>
+        <p><strong>Apellidos:</strong> {{ oftalmologoPerfil.apellidos }}</p>
+        <p><strong>Coleguatura:</strong> {{ oftalmologoPerfil.colegiatura }}</p>
+        <p><strong>Especialidad:</strong> {{ oftalmologoPerfil.especialidad }}</p>
+        <p><strong>Correo:</strong> {{ oftalmologoPerfil.correo }}</p>
+        <p><strong>Telefono:</strong> {{ oftalmologoPerfil.telefono }}</p>
+        <p><strong>Disponible:</strong> {{ oftalmologoPerfil.disponibilidad ? 'Sí' : 'No' }}</p>
+
+        <div class="modal-acciones">
+          <button mat-raised-button (click)="cerrarPerfil()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  }
 </div>

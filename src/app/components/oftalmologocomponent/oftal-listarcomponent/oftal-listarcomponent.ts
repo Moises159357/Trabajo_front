@@ -13,8 +13,12 @@ import { Oftalmologoservice } from '../../../services/oftalmologoservice';
   templateUrl: './oftal-listarcomponent.html',
 })
 export class OftalListarcomponent implements OnInit{
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8'];
+  displayedColumns: string[] = ['c2', 'c3', 'c4', 'c6', 'c7', 'c8', 'c9'];
   dataSource: OftalmologoDTO[] = [];
+
+  idAEliminar: number | null = null;
+  mostrarConfirmacion: boolean = false;
+  oftalmologoPerfil: OftalmologoDTO | null = null;
 
   constructor(
     private oS: Oftalmologoservice,
@@ -38,7 +42,23 @@ export class OftalListarcomponent implements OnInit{
     });
   }
 
-  eliminarOftalmologo(id: number) {
+  confirmarEliminacion(id: number) {
+    this.idAEliminar = id;
+    this.mostrarConfirmacion = true;
+  }
+
+  cancelarEliminacion() {
+    this.idAEliminar = null;
+    this.mostrarConfirmacion = false;
+  }
+
+  ejecutarEliminacion() {
+    if (this.idAEliminar === null) return;
+
+    const id = this.idAEliminar;
+    this.mostrarConfirmacion = false;
+    this.idAEliminar = null;
+
     this.oS.deleteOftalmologo(id).subscribe({
       next: () => {
         this.obtenerOftalmologos();
@@ -49,5 +69,13 @@ export class OftalListarcomponent implements OnInit{
         this.cdr.detectChanges();
       },
     });
+  }
+
+  verPerfil(oftalmologo: OftalmologoDTO) {
+    this.oftalmologoPerfil = oftalmologo;
+  }
+
+  cerrarPerfil() {
+    this.oftalmologoPerfil = null;
   }
 }
