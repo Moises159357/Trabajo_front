@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-tratamiento-actualizarcomponent',
@@ -18,7 +19,8 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatFormFieldModule,
     MatDatepickerModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   templateUrl: './tratamiento-actualizarcomponent.html',
   styleUrl: './tratamiento-actualizarcomponent.css',

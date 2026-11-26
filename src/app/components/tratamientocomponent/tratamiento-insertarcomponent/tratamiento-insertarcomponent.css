@@ -1,176 +1,69 @@
 
-/* Contenedor principal */
 :host {
   display: block;
-  padding: 25px;
+  max-width: 650px;
+  margin: 30px auto;
+  padding: 24px 28px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(15, 36, 56, 0.12);
   font-family: Arial, sans-serif;
-  background-color: #f5f7f5;
-  min-height: 80vh;
   box-sizing: border-box;
 }
 
-/* Tarjeta del formulario */
-.container {
-  max-width: 750px;
-  margin: 25px auto;
-  padding: 30px 40px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.09);
-  box-sizing: border-box;
-}
-
-/* Título */
 h2 {
   text-align: center;
-  color: #1a237e;
+  color: #0f2438;
   font-size: 26px;
-  font-weight: bold;
-  margin: 5px 0 30px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #3f51b5;
+  font-weight: 700;
+  margin: 0 0 20px 0;
 }
 
-/* Distribución del formulario */
 form {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px 20px;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-/* Ocultar saltos de línea */
 form br {
   display: none;
 }
 
-/* Campos */
-form mat-form-field {
+mat-form-field {
   width: 100%;
-  min-width: 0;
 }
 
-/* Nombre del Tratamiento */
-form mat-form-field:nth-of-type(1) {
-  grid-column: 1 / -1;
-}
-
-/* Tipo de Tratamiento */
-form mat-form-field:nth-of-type(2) {
-  grid-column: 1;
-}
-
-/* Duración */
-form mat-form-field:nth-of-type(3) {
-  grid-column: 2;
-}
-
-/* Estado */
-form mat-form-field:nth-of-type(4) {
-  grid-column: 1;
-}
-
-/* Fecha de Registro */
-form mat-form-field:nth-of-type(5) {
-  grid-column: 2;
-}
-
-/* Indicaciones */
-form mat-form-field:nth-of-type(6) {
-  grid-column: 1 / -1;
-}
-
-/* Áreas de texto */
-textarea {
-  min-height: 75px;
-  resize: vertical;
-}
-
-
-/* Botón Guardar */
-form button {
-  grid-column: 1 / -1;
-  justify-self: center;
-
-  min-width: 190px;
-  height: 52px;
-  padding: 0 32px;
-
-  margin-top: 18px;
-  border-radius: 8px;
-
+button[type="submit"] {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 8px;
+  background-color: #0f5c57 !important;
+  color: #ffffff !important;
   font-size: 16px;
   font-weight: 600;
-
-  background-color: #3f51b5;
-  color: white;
-
-  cursor: pointer;
+  border-radius: 8px !important;
   transition: background-color 0.2s ease;
 }
 
-/* Efecto del botón */
-form button:hover:not(:disabled) {
-  background-color: #283593;
+button[type="submit"]:hover {
+  background-color: #10b981 !important;
 }
 
-/* Botón deshabilitado */
-form button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-
-/* Efecto del botón */
-form button:hover:not(:disabled) {
-  background-color: #283593;
-}
-
-form button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Mensajes */
 p {
+  margin: 12px 0 0 0;
   text-align: center;
-  margin: 20px auto 0;
-  padding: 14px;
-  max-width: 450px;
-  background-color: #e8eaf6;
-  color: #1a237e;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
-  border-radius: 8px;
+  color: #0f5c57;
 }
 
-/* Adaptación a celulares */
 @media (max-width: 600px) {
-
   :host {
-    padding: 12px;
-  }
-
-  .container {
-    padding: 22px 18px;
-    margin: 15px auto;
+    margin: 15px;
+    padding: 18px;
   }
 
   h2 {
     font-size: 22px;
-  }
-
-  form {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  form mat-form-field {
-    grid-column: 1 !important;
-  }
-
-  form button {
-    width: 100%;
-    min-width: 0;
   }
 }

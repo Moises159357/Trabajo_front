@@ -27,21 +27,39 @@
     </mat-menu>
 
     <button mat-button [matMenuTriggerFor]="menuOftalmologo" class="nav-btn">Oftalmólogo</button>
-    <mat-menu #menuOftalmologo="matMenu" class="optic-menu">
+    <mat-menu #menuOftalmologo="matMenu">
       <button mat-menu-item routerLink="/oftalmologo/listar">Listar</button>
       <button mat-menu-item routerLink="/oftalmologo/insertar">Insertar</button>
     </mat-menu>
 
-    <button mat-button [matMenuTriggerFor]="menuIntervencion" class="nav-btn">Intervenciones</button>
-    <mat-menu #menuIntervencion="matMenu" class="optic-menu">
+    <button mat-button [matMenuTriggerFor]="menuIntervencion" class="nav-btn">Intervención</button>
+    <mat-menu #menuIntervencion="matMenu">
       <button mat-menu-item routerLink="/intervencion/listar">Listar</button>
       <button mat-menu-item routerLink="/intervencion/insertar">Insertar</button>
     </mat-menu>
 
-    <button mat-button [matMenuTriggerFor]="menuTratamiento" class="nav-btn">Tratamientos</button>
-    <mat-menu #menuTratamiento="matMenu" class="optic-menu">
+    <button mat-button [matMenuTriggerFor]="menuTratamiento" class="nav-btn">Tratamiento</button>
+    <mat-menu #menuTratamiento="matMenu">
       <button mat-menu-item routerLink="/tratamiento/listar">Listar</button>
       <button mat-menu-item routerLink="/tratamiento/insertar">Insertar</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="menuRecetas" class="nav-btn">Recetas</button>
+    <mat-menu #menuRecetas="matMenu">
+      <button mat-menu-item routerLink="/recetas/listar">Listar</button>
+      <button mat-menu-item routerLink="/recetas/insertar">Insertar</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="menuLentes" class="nav-btn">Lentes</button>
+    <mat-menu #menuLentes="matMenu">
+      <button mat-menu-item routerLink="/lentes/listar">Listar</button>
+      <button mat-menu-item routerLink="/lentes/insertar">Insertar</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="menuDetalles" class="nav-btn">Detalles</button>
+    <mat-menu #menuDetalles="matMenu">
+      <button mat-menu-item routerLink="/detalles/listar">Listar</button>
+      <button mat-menu-item routerLink="/detalles/insertar">Insertar</button>
     </mat-menu>
 
     <button mat-button [matMenuTriggerFor]="menuApis" class="nav-btn">Apis</button>
@@ -51,7 +69,10 @@
 
     <button mat-button [matMenuTriggerFor]="menuReport" class="nav-btn accent-btn">Reportes</button>
     <mat-menu #menuReport="matMenu" class="optic-menu">
-      <button mat-menu-item routerLink="/reportes/reportecitas">Reporte citas</button>
+      <button mat-menu-item routerLink="/reportes/reportecitas">Reporte Citas</button>
+      <button mat-menu-item routerLink="/reportes/reporteintervenciones">Reporte Intervenciones</button>
+      <button mat-menu-item routerLink="/reportes/reportetratamientos">Reporte Tratamientos</button>
+
     </mat-menu>
   </div>
 </div>

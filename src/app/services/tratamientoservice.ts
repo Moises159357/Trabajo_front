@@ -5,30 +5,34 @@ import { Observable } from 'rxjs';
 import { TratamientoDTO } from '../models/TratamientoDTO';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class Tratamientoservice {
-    private apiURL = `${environment.base}/api/tratamientos`
+  private apiURL = `${environment.base}/api/tratamientos`;
 
-        constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-        getListTratamientos(): Observable<TratamientoDTO[]> {
-            return this.http.get<TratamientoDTO[]>(this.apiURL);
-        }
+  getListTratamientos(): Observable<TratamientoDTO[]> {
+    return this.http.get<TratamientoDTO[]>(this.apiURL);
+  }
 
-        insertTratamiento(dto: TratamientoDTO): Observable<TratamientoDTO> {
-            return this.http.post<TratamientoDTO>(`${this.apiURL}/registrar`, dto)
-        }
+  insertTratamiento(dto: TratamientoDTO): Observable<TratamientoDTO> {
+    return this.http.post<TratamientoDTO>(`${this.apiURL}/registrar`, dto);
+  }
 
-        deleteTratamiento(id: number): Observable<void> {
-            return this.http.delete<void>(`${this.apiURL}/EliminarTratamiento/${id}`)
-        }
-        
-        listId(id: number): Observable<TratamientoDTO> {
-            return this.http.get<TratamientoDTO>(`${this.apiURL}/buscarPorID/${id}`);
-        }
+  deleteTratamiento(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiURL}/EliminarTratamiento/${id}`);
+  }
 
-        updateTratamiento(dto: TratamientoDTO): Observable<TratamientoDTO> {
-            return this.http.put<TratamientoDTO>(`${this.apiURL}/actualizar`, dto)
-        }
+  listId(id: number): Observable<TratamientoDTO> {
+    return this.http.get<TratamientoDTO>(`${this.apiURL}/buscarPorID/${id}`);
+  }
+
+  updateTratamiento(dto: TratamientoDTO): Observable<TratamientoDTO> {
+    return this.http.put<TratamientoDTO>(`${this.apiURL}/actualizar`, dto);
+  }
+
+  obtenerTratamientosPorEstado(estado: string) {
+    return this.http.get<TratamientoDTO[]>(`${this.apiURL}/obtenerTratamientoPorEstado/${estado}`);
+  }
 }
