@@ -1,0 +1,94 @@
+<div class="container">
+  <h2>Lista de Citas</h2>
+  <div>
+    @if (dataSource.length > 0) {
+      <table mat-table [dataSource]="dataSource" class="mat-shadow-2">
+        <ng-container matColumnDef="c1">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.idCitas }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="c2">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let element">{{ element.fechaCita }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="c3">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let element">{{ element.estado }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="c4">
+          <th mat-header-cell *matHeaderCellDef>Motivo</th>
+          <td mat-cell *matCellDef="let element">{{ element.motivoCita }}</td>
+        </ng-container>
+
+        <!-- Paciente -->
+        <ng-container matColumnDef="c5">
+          <th mat-header-cell *matHeaderCellDef>Paciente</th>
+          <td mat-cell *matCellDef="let element">
+            {{ obtenerNombrePaciente(element.idPaciente) }}
+          </td>
+        </ng-container>
+
+        <!-- Oftalmólogo (ajusta matColumnDef y el campo del ID según tu CitaDTO) -->
+        <ng-container matColumnDef="c6">
+          <th mat-header-cell *matHeaderCellDef>Oftalmólogo</th>
+          <td mat-cell *matCellDef="let element">
+            {{ obtenerNombreOftalmologo(element.idOftalmologo) }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c7">
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-icon-button
+              class="btn-eliminar"
+              title="Eliminar"
+              (click)="confirmarEliminacion(element.idCitas)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c8">
+          <th mat-header-cell *matHeaderCellDef>Editar</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              matIconButton
+              class="btn-editar"
+              [routerLink]="['/citas/editar', element.idCitas]"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    } @else {
+      <p>No hay citas disponibles.</p>
+    }
+  </div>
+</div>
+@if (mostrarConfirmacion) {
+  <div class="modal-backdrop">
+    <div class="modal-caja">
+      <h3>Confirmar eliminación</h3>
+      <p>¿Deseas eliminar esta cita?</p>
+      <div class="modal-acciones">
+        <button
+          mat-raised-button
+          class="btn-confirmar-borrar"
+          (click)="ejecutarEliminacion()"
+        >
+          Sí, eliminar
+        </button>
+        <button mat-stroked-button (click)="cancelarEliminacion()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+}

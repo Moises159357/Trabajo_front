@@ -1,0 +1,162 @@
+<!-- Barra superior / Menú principal existente -->
+<app-menucomponent></app-menucomponent>
+
+<div class="home-wrapper">
+
+  <!-- 1. BARRA DE MÉTRICAS CLAVE (Flotante sobre el corte del Hero) -->
+  <section class="metrics-section">
+    <div class="container">
+      <div class="metrics-grid">
+        <div class="metric-card" *ngFor="let item of metricasPlataforma">
+          <div class="metric-icon">{{ item.icono }}</div>
+          <div class="metric-info">
+            <span class="metric-value">{{ item.valor }}</span>
+            <span class="metric-label">{{ item.etiqueta }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. FLUJO DE ATENCIÓN DIGITAL (Cómo funciona) -->
+  <section class="workflow-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag">EXPERIENCIA LEAN UX</span>
+        <h2>Tu atención oftalmológica en 3 pasos</h2>
+        <p>Integramos arquitectura REST con Spring Boot y análisis preventivo para optimizar cada etapa de tu consulta.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card" *ngFor="let paso of pasosAtencion" [ngClass]="'border-' + paso.color">
+          <span class="step-number">{{ paso.numero }}</span>
+          <h3>{{ paso.titulo }}</h3>
+          <p>{{ paso.descripcion }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SECCIÓN IMPACTO ECOLÓGICO (Enlazada al #impacto del Navbar) -->
+  <section id="impacto" class="eco-section">
+    <div class="container eco-grid">
+      <div class="eco-content">
+        <span class="badge-eco">🌿 COMPROMISO SOSTENIBLE ZERO-PAPEL</span>
+        <h2>Salud visual que cuida tus ojos y el planeta</h2>
+        <p>
+          Cada consulta optométrica tradicional genera entre 5 y 8 hojas impresas entre historias clínicas, órdenes de examen y recetas físicas. Con <strong>OpticVision</strong>, toda tu información clínica viaja encriptada y disponible en cualquier dispositivo.
+        </p>
+
+        <ul class="eco-list">
+          <li>✔ Eliminación total de historias clínicas físicas y talonarios.</li>
+          <li>✔ Reducción de traslados innecesarios gracias al pre-triaje remoto.</li>
+          <li>✔ Acceso permanente a tus medidas ópticas en formato PDF certificado.</li>
+        </ul>
+      </div>
+
+      <!-- Simulador interactivo de ahorro -->
+      <div class="eco-calculator-card">
+        <div class="calc-header">
+          <h3>Calculadora de Ahorro Ambiental</h3>
+          <p>Desliza para estimar tu impacto anual con OpticVision</p>
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-labels">
+            <span>Consultas / controles al año:</span>
+            <strong>{{ consultasAnuales }} {{ consultasAnuales === 1 ? 'consulta' : 'consultas' }}</strong>
+          </div>
+          <input 
+            type="range" 
+            min="1" 
+            max="20" 
+            [(ngModel)]="consultasAnuales" 
+            class="eco-slider"
+          />
+        </div>
+
+        <div class="calc-results">
+          <div class="result-box">
+            <span class="res-num">{{ hojasAhorradas }}</span>
+            <span class="res-text">Hojas A4 ahorradas</span>
+          </div>
+          <div class="result-box">
+            <span class="res-num">{{ co2Evitado }} kg</span>
+            <span class="res-text">Emisiones CO₂ evitadas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. ACCESOS RÁPIDOS A MÓDULOS DEL SISTEMA -->
+  <section class="modules-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag">ECOSISTEMA OPTICVISION</span>
+        <h2>Explora los Módulos de la Plataforma</h2>
+        <p>Accede directamente a las herramientas de gestión académica y clínica del sistema.</p>
+      </div>
+
+      <div class="modules-grid">
+        <div class="module-item" (click)="navegarA('/citas')">
+          <div class="mod-icon teal">📅</div>
+          <div class="mod-body">
+            <h4>Gestión de Citas</h4>
+            <p>Programa, reprograma o consulta el estado de tus atenciones médicas.</p>
+            <span class="mod-link">Ir a Citas &rarr;</span>
+          </div>
+        </div>
+
+        <div class="module-item" (click)="navegarA('/oftalmologos')">
+          <div class="mod-icon green">👨‍⚕️</div>
+          <div class="mod-body">
+            <h4>Staff de Oftalmólogos</h4>
+            <p>Conoce a nuestros especialistas colegiados y sus áreas de atención.</p>
+            <span class="mod-link">Ver Especialistas &rarr;</span>
+          </div>
+        </div>
+
+        <div class="module-item" (click)="navegarA('/pacientes')">
+          <div class="mod-icon dark">🧑‍💼</div>
+          <div class="mod-body">
+            <h4>Portal del Paciente</h4>
+            <p>Administra tus datos personales, DNI e historial de evaluaciones.</p>
+            <span class="mod-link">Gestionar Perfil &rarr;</span>
+          </div>
+        </div>
+
+        <div class="module-item" (click)="navegarA('/reportes')">
+          <div class="mod-icon orange">📊</div>
+          <div class="mod-body">
+            <h4>Reportes & Analítica</h4>
+            <p>Visualiza métricas de atención, diagnósticos frecuentes y ahorro ecológico.</p>
+            <span class="mod-link">Ver Reportes &rarr;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. BANNER DE CIERRE / CALL TO ACTION -->
+  <section class="cta-banner-section">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-text">
+          <span class="cta-course">Arquitectura de Aplicaciones Web • NRC 8228</span>
+          <h2>¿Listo para evaluar tu salud visual sin gastar una sola hoja de papel?</h2>
+          <p>Inicia ahora mismo tu pre-diagnóstico preventivo o agenda una evaluación con nuestros especialistas.</p>
+        </div>
+        <div class="cta-actions">
+          <button class="btn-primary-orange" (click)="navegarA('/citas')">
+            📅 Reservar Cita Ahora
+          </button>
+          <button class="btn-outline-light" (click)="navegarA('/reportes')">
+            Ver Estadísticas
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

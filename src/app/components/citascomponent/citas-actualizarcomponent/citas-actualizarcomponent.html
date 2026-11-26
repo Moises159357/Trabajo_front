@@ -1,0 +1,69 @@
+<div class="container">
+  <div>
+    <h2>Formulario de Actualización de Citas</h2>
+  </div>
+
+  @if (citaAnterior) {
+    <div class="info-anterior">
+      <h3>Información Anterior de la Cita</h3>
+      <p><strong>Código:</strong> {{ citaAnterior.idCitas }}</p>
+      <p><strong>Fecha de la Cita:</strong> {{ citaAnterior.fechaCita | date: 'dd/MM/yyyy' }}</p>
+      <p><strong>Estado:</strong> {{ citaAnterior.estado }}</p>
+      <p><strong>Motivo:</strong> {{ citaAnterior.motivoCita }}</p>
+      <p><strong>ID Paciente:</strong> {{ citaAnterior.idPaciente }}</p>
+      <p><strong>ID Oftalmólogo:</strong> {{ citaAnterior.idOftalmologo }}</p>
+    </div>
+  }
+
+  <div>
+    <form [formGroup]="formCitas" (ngSubmit)="actualizarCitas()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Código</mat-label>
+        <input matInput type="number" formControlName="codigo" readonly>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field>
+        <mat-label>Fecha de la Cita</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fecha">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="estado">
+          <mat-option value="Completo">Completo</mat-option>
+          <mat-option value="En curso">En curso</mat-option>
+          <mat-option value="Cancelado">Cancelado</mat-option>
+          <mat-option value="Pendiente">Pendiente</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Motivo</mat-label>
+        <textarea matInput formControlName="motivo"></textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>ID Paciente</mat-label>
+        <input matInput type="number" formControlName="paciente">
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>ID Oftalmólogo</mat-label>
+        <input matInput type="number" formControlName="oftalmologo">
+      </mat-form-field>
+      <br>
+
+      <button matButton type="submit">Guardar</button>
+    </form>
+
+    <p>{{ mensaje }}</p>
+  </div>
+</div>

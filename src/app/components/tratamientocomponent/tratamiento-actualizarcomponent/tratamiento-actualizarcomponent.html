@@ -1,0 +1,94 @@
+
+<div class="container">
+    <div>
+        <h2>Actualización de Tratamientos</h2>
+    </div>
+
+    <div>
+        @if (formTratamiento) {
+        <form [formGroup]="formTratamiento" (ngSubmit)="actualizarTratamiento()">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Código de Tratamiento</mat-label>
+                <input matInput type="number"
+                    [value]="idTratamiento" readonly>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre del Tratamiento</mat-label>
+                <input matInput
+                    placeholder="Nombre del tratamiento"
+                    formControlName="nombre">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Tipo de Tratamiento</mat-label>
+                <mat-select formControlName="tipo">
+                    <mat-option value="Farmacológico">Farmacológico</mat-option>
+                    <mat-option value="Óptico">Óptico</mat-option>
+                    <mat-option value="Quirúrgico">Quirúrgico</mat-option>
+                    <mat-option value="Terapia visual">Terapia visual</mat-option>
+                    <mat-option value="Preventivo">Preventivo</mat-option>
+                    <mat-option value="Postoperatorio">Postoperatorio</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Duración en Días</mat-label>
+                <input matInput type="number"
+                    min="1"
+                    placeholder="7"
+                    formControlName="duracionDias">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Estado</mat-label>
+                <mat-select formControlName="estado">
+                    <mat-option value="Pendiente">Pendiente</mat-option>
+                    <mat-option value="En curso">En curso</mat-option>
+                    <mat-option value="Finalizado">Finalizado</mat-option>
+                    <mat-option value="Cancelado">Cancelado</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field>
+                <mat-label>Fecha de Registro</mat-label>
+                <input matInput [matDatepicker]="picker"
+                    formControlName="fechaRegistro">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Indicaciones</mat-label>
+                <textarea matInput
+                    placeholder="Ingrese las indicaciones del tratamiento"
+                    formControlName="indicaciones"></textarea>
+            </mat-form-field>
+            <br>
+
+            <button matButton type="submit"
+                [disabled]="cargando || guardando">
+                Guardar
+            </button>
+
+        </form>
+        }
+
+        @if (cargando) {
+            <p>Cargando tratamiento...</p>
+        }
+
+        @if (mensaje) {
+            <p>{{ mensaje }}</p>
+        }
+
+    </div>
+</div>

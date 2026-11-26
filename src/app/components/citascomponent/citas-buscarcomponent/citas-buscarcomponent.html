@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="encabezado">
+    <h2>Buscar Citas por Fecha</h2>
+    <span class="badge-total">{{ dataSource.length }} resultado(s)</span>
+  </div>
+
+  <!-- Filtros por fecha y checkbox de selección -->
+  <div class="filtros-box">
+    <mat-form-field appearance="outline">
+      <mat-label>Desde</mat-label>
+      <input matInput type="date" [(ngModel)]="fechaDesde" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Hasta</mat-label>
+      <input matInput type="date" [(ngModel)]="fechaHasta" />
+    </mat-form-field>
+
+    <button mat-raised-button class="btn-buscar" (click)="buscarPorFechas()">
+      <mat-icon>search</mat-icon>
+      Buscar
+    </button>
+
+    <button mat-stroked-button (click)="limpiarFiltros()">
+      Limpiar
+    </button>
+
+    <mat-checkbox
+      [checked]="soloSeleccionadas"
+      (change)="toggleSoloSeleccionadas()">
+      Ver solo marcadas ({{ seleccionadas.size }})
+    </mat-checkbox>
+  </div>
+
+  @if (mensaje) {
+    <p class="mensaje-aviso">{{ mensaje }}</p>
+  }
+
+  @if (dataSource.length > 0) {
+    <div class="tabla-wrapper">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+
+        <!-- Checkbox de selección -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>Sel.</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox
+              [checked]="seleccionadas.has(getIdCita(element))"
+              (change)="toggleSeleccion(getIdCita(element))">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- Fecha -->
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let element">{{ element.fechaCita }}</td>
+        </ng-container>
+
+        <!-- Paciente -->
+        <ng-container matColumnDef="paciente">
+          <th mat-header-cell *matHeaderCellDef>Paciente</th>
+          <td mat-cell *matCellDef="let element"><strong>{{ getNombrePaciente(element) }}</strong></td>
+        </ng-container>
+
+        <!-- Oftalmólogo -->
+        <ng-container matColumnDef="oftalmologo">
+          <th mat-header-cell *matHeaderCellDef>Oftalmólogo</th>
+          <td mat-cell *matCellDef="let element">{{ getNombreOftalmologo(element) }}</td>
+        </ng-container>
+
+        <!-- Estado con colores -->
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let element">
+            <span class="estado-pill" [ngClass]="getClaseEstado(element.estado)">
+              {{ element.estado || 'En proceso' }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Motivo -->
+        <ng-container matColumnDef="motivo">
+          <th mat-header-cell *matHeaderCellDef>Motivo</th>
+          <td mat-cell *matCellDef="let element">{{ element.motivoCita }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns;"
+          [class.fila-marcada]="seleccionadas.has(getIdCita(row))">
+        </tr>
+      </table>
+    </div>
+  }
+</div>

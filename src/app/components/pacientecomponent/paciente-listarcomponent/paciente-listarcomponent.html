@@ -1,0 +1,113 @@
+<div class="container">
+  <h2>Lista de Pacientes</h2>
+  <div>
+    @if (dataSource.length > 0) {
+      <table mat-table [dataSource]="dataSource" class="mat-shadow-2">
+        <!-- DNI -->
+        <ng-container matColumnDef="c2">
+          <th mat-header-cell *matHeaderCellDef>DNI</th>
+          <td mat-cell *matCellDef="let element">{{ element.dni }}</td>
+        </ng-container>
+
+        <!-- Nombre -->
+        <ng-container matColumnDef="c3">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+        </ng-container>
+
+        <!-- Apellidos -->
+        <ng-container matColumnDef="c4">
+          <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+          <td mat-cell *matCellDef="let element">{{ element.apellidos }}</td>
+        </ng-container>
+
+        <!-- Eliminar -->
+        <ng-container matColumnDef="c5">
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-icon-button
+              class="btn-eliminar"
+              title="Eliminar"
+              (click)="confirmarEliminacion(element.idPaciente)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Editar -->
+        <ng-container matColumnDef="c6">
+          <th mat-header-cell *matHeaderCellDef>Editar</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-icon-button
+              class="btn-editar"
+              title="Editar"
+              [routerLink]="['/paciente/editar', element.idPaciente]"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Ver perfil -->
+        <ng-container matColumnDef="c7">
+          <th mat-header-cell *matHeaderCellDef>Ver perfil</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-icon-button
+              class="btn-ver"
+              title="Ver perfil"
+              (click)="verPerfil(element)"
+            >
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    } @else {
+      <p>No hay pacientes disponibles.</p>
+    }
+  </div>
+
+  <!-- Ventana emergente de confirmación -->
+  @if (mostrarConfirmacion) {
+    <div class="modal-backdrop">
+      <div class="modal-caja">
+        <h3>Confirmar eliminación</h3>
+        <p>¿Deseas eliminar al paciente seleccionado?</p>
+        <div class="modal-acciones">
+          <button mat-raised-button class="btn-confirmar-borrar" (click)="ejecutarEliminacion()">
+            Sí, eliminar
+          </button>
+          <button mat-stroked-button (click)="cancelarEliminacion()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+@if (pacientePerfil) {
+  <div class="modal-backdrop">
+    <div class="modal-caja perfil-caja">
+      <h3>Perfil del Paciente</h3>
+      <p><strong>ID:</strong> {{ pacientePerfil.idPaciente }}</p>
+      <p><strong>DNI:</strong> {{ pacientePerfil.dni }}</p>
+      <p><strong>Nombre:</strong> {{ pacientePerfil.nombre }}</p>
+      <p><strong>Apellidos:</strong> {{ pacientePerfil.apellidos }}</p>
+      <p><strong>Género:</strong> {{ pacientePerfil.genero }}</p>
+      <p><strong>Correo:</strong> {{ pacientePerfil.correo }}</p>
+      <p><strong>Dirección:</strong> {{ pacientePerfil.direccion }}</p>
+      <p><strong>Teléfono:</strong> {{ pacientePerfil.telefono }}</p>
+      <p><strong>Fecha de Nacimiento:</strong> {{ pacientePerfil.fechaNacimiento }}</p>
+      <p><strong>Fecha de Inscripción:</strong> {{ pacientePerfil.fechaInscripcion }}</p>
+
+      <div class="modal-acciones">
+        <button mat-raised-button (click)="cerrarPerfil()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+}
