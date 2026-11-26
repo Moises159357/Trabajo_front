@@ -1,0 +1,156 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e6f4f1 100%);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 16px 36px rgba(30, 41, 59, 0.08);
+  overflow: hidden;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.brand-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.brand-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #008b8b, #2e8b57);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.brand-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.brand-name span {
+  color: #008b8b;
+}
+
+.brand-sub {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #2e8b57;
+  margin-top: 2px;
+}
+
+h1 {
+  margin: 0 0 1.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #1e293b;
+}
+
+label {
+  margin-top: 0.85rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+input {
+  box-sizing: border-box;
+  height: 2.75rem;
+  padding: 0 0.9rem;
+  font: inherit;
+  font-size: 0.95rem;
+  color: #1e293b;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #008b8b;
+  box-shadow: 0 0 0 3px rgba(0, 139, 139, 0.16);
+}
+
+input.ng-touched.ng-invalid {
+  border-color: #d92d20;
+}
+
+.field-error {
+  margin: 0.3rem 0 0;
+  font-size: 0.82rem;
+  color: #d92d20;
+}
+
+.error {
+  margin: 1rem 0 0;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.85rem;
+  color: #d92d20;
+  background: #fef3f2;
+  border: 1px solid #fecdca;
+  border-radius: 10px;
+}
+
+button {
+  margin-top: 1.5rem;
+  height: 2.85rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #008b8b;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background: #2e8b57;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.back-link {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #008b8b;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,35 @@
+<div class="chat-card">
+  <div class="chat-header">
+    <mat-icon>smart_toy</mat-icon>
+    <span>Asistente Virtual OpticVision</span>
+  </div>
+
+  <div class="chat-mensajes">
+    @for (msg of mensajes; track $index) {
+      <div
+        class="burbuja"
+        [class.usuario]="msg.role === 'user'"
+        [class.ia]="msg.role === 'assistant'"
+      >
+        {{ msg.content }}
+      </div>
+    }
+
+    @if (cargando) {
+      <div class="burbuja ia escribiendo">Escribiendo respuesta...</div>
+    }
+  </div>
+
+  <div class="chat-input-box">
+    <input
+      type="text"
+      [(ngModel)]="textoUsuario"
+      (keyup.enter)="enviar()"
+      placeholder="Escribe tu consulta visual aquí..."
+      [disabled]="cargando"
+    />
+    <button mat-raised-button class="btn-enviar" (click)="enviar()" [disabled]="cargando">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>

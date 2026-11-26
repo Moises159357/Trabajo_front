@@ -21,6 +21,9 @@ import { Intervencioncomponent } from './components/intervencioncomponent/interv
 import { IntervencionListarcomponent } from './components/intervencioncomponent/intervencion-listarcomponent/intervencion-listarcomponent';
 import { IntervencionActualizarcomponent } from './components/intervencioncomponent/intervencion-actualizarcomponent/intervencion-actualizarcomponent';
 import { IntervencionInsertarcomponent } from './components/intervencioncomponent/intervencion-insertarcomponent/intervencion-insertarcomponent';
+import { ChatComponent } from './components/apiscomponent/chat-component/chat-component';
+import { Logincomponent } from './components/logincomponent/logincomponent';
+import { authGuard } from './core/guards/auth-guard';
 import { Tratamientocomponent } from './components/tratamientocomponent/tratamientocomponent';
 import { TratamientoListarcomponent } from './components/tratamientocomponent/tratamiento-listarcomponent/tratamiento-listarcomponent';
 import { TratamientoActualizarcomponent } from './components/tratamientocomponent/tratamiento-actualizarcomponent/tratamiento-actualizarcomponent';
@@ -29,8 +32,11 @@ import { ReporteIntervencionescomponent } from './components/reportescomponent/r
 import { ReporteTratamientoscomponent } from './components/reportescomponent/reporte-tratamientoscomponent/reporte-tratamientoscomponent';
 
 export const routes: Routes = [
+  { path: 'login', component: Logincomponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'inicio', component: Homecomponent, canActivate: [authGuard] },
   {
-    path: '',
+    path: 'home',
     component: Homecomponent,
   },
   {
@@ -201,6 +207,11 @@ export const routes: Routes = [
 
         component: ReporteTratamientoscomponent,
       },
+      {
+        path: 'chat',
+        component: ChatComponent,
+      },
     ],
   },
+  { path: '**', redirectTo: 'login' },
 ];

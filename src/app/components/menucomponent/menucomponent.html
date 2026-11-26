@@ -8,7 +8,7 @@
   </div>
 
   <div class="nav-links">
-    <button mat-button routerLink="/" class="nav-btn home-btn">
+    <button mat-button routerLink="/home" class="nav-btn home-btn">
       <mat-icon fontIcon="home"></mat-icon>
       <span>Inicio</span>
     </button>
@@ -65,6 +65,7 @@
     <button mat-button [matMenuTriggerFor]="menuApis" class="nav-btn">Apis</button>
     <mat-menu #menuApis="matMenu" class="optic-menu">
       <button mat-menu-item routerLink="/apis/productos">Api productos</button>
+      <button mat-menu-item routerLink="/apis/chat">Consultar con agente</button>
     </mat-menu>
 
     <button mat-button [matMenuTriggerFor]="menuReport" class="nav-btn accent-btn">Reportes</button>
@@ -74,5 +75,20 @@
       <button mat-menu-item routerLink="/reportes/reportetratamientos">Reporte Tratamientos</button>
 
     </mat-menu>
+    @if (username) {
+      <span class="user-info"
+        ><mat-icon>perm_identity</mat-icon> {{ username }}
+        <span class="role">Roles: {{ roles }}</span>
+      </span>
+
+      <button matButton [matMenuTriggerFor]="menuCerrar" style="color: aliceblue">
+        Cerrar Sesión
+      </button>
+      <mat-menu #menuCerrar="matMenu">
+        <button matButton type="button" (click)="cerrarSesion()">
+          <mat-icon>power_settings_new</mat-icon>Salir
+        </button>
+      </mat-menu>
+    }
   </div>
 </div>
