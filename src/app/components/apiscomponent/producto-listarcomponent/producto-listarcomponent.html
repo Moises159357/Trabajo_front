@@ -1,18 +1,72 @@
 <div class="container">
-  <h2>Catálogo de Gafas</h2>
-  <div class="catalogo">
-    @for (p of productos; track p.id) {
-    <mat-card class="tarjeta">
-      <img mat-card-image [src]="p.thumbnail" [alt]="p.title">
-      <mat-card-header>
-        <mat-card-title>{{ p.title }}</mat-card-title>
-        <mat-card-subtitle>{{ p.brand }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p>{{ p.description }}</p>
-        <p><strong>$ {{ p.price }}</strong> · Puntuación: {{ p.rating }}</p>
-      </mat-card-content>
-    </mat-card>
+  <div class="header-catalogo">
+    <h2>Catálogo Completo de Lentes</h2>
+    <span class="contador-badge">{{ lentesFiltrados.length }} modelos disponibles</span>
+  </div>
+
+  <!-- Secciones del catálogo -->
+  <div class="secciones">
+    @for (sec of secciones; track sec.id) {
+      <button
+        mat-raised-button
+        [class.btn-activo]="seccionActiva === sec.id"
+        (click)="cambiarSeccion(sec.id)">
+        {{ sec.label }}
+      </button>
     }
+  </div>
+
+  <!-- Buscador -->
+  <div class="buscador">
+    <mat-form-field appearance="outline" style="width: 100%; max-width: 450px;">
+      <mat-label>Buscar lente por modelo, marca o característica</mat-label>
+      <input
+        matInput
+        [(ngModel)]="textoBusqueda"
+        (ngModelChange)="aplicarFiltros()"
+        placeholder="Ej. Classic, Oakley, Aviator, Black..." />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <!-- Tarjetas de lentes -->
+  <div class="catalogo">
+    @for (p of lentesPaginados; track p.id) {
+      <mat-card class="tarjeta">
+        <img mat-card-image [src]="p.thumbnail" [alt]="p.title">
+        <mat-card-header>
+          <mat-card-title>{{ p.title }}</mat-card-title>
+          <mat-card-subtitle>{{ p.brand || 'OpticVision Collection' }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="descripcion">{{ p.description }}</p>
+          <div class="precio-fila">
+            <span class="precio">$ {{ p.price }}</span>
+            <span class="rating">★ {{ p.rating }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    } @empty {
+      <p class="vacio">No se encontraron lentes que coincidan con tu búsqueda.</p>
+    }
+  </div>
+
+  <!-- Compaginador -->
+  <div class="paginador">
+    <button
+      mat-stroked-button
+      (click)="paginaAnterior()"
+      [disabled]="paginaActual === 1">
+      Anterior
+    </button>
+
+    <span>Página <strong>{{ paginaActual }}</strong> de <strong>{{ totalPaginas }}</strong></span>
+
+    <button
+      mat-stroked-button
+      (click)="paginaSiguiente()"
+      [disabled]="paginaActual === totalPaginas">
+      Siguiente
+    </button>
   </div>
 </div>
