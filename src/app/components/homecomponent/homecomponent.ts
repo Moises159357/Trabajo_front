@@ -51,7 +51,7 @@ export class Homecomponent implements OnInit {
 
   // Cálculos dinámicos para la sección de Impacto Ecológico
   get hojasAhorradas(): number {
-    return this.consultasAnuales * 6; // Promedio de 6 hojas por atención (historia, receta, indicaciones, comprobante)
+    return this.consultasAnuales * 4; // Promedio de 6 hojas por atención (historia, receta, indicaciones, comprobante)
   }
 
   get co2Evitado(): string {

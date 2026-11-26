@@ -99,7 +99,7 @@
       </div>
 
       <div class="modules-grid">
-        <div class="module-item" (click)="navegarA('/citas')">
+        <div class="module-item" (click)="navegarA('/citas/listar')">
           <div class="mod-icon teal">📅</div>
           <div class="mod-body">
             <h4>Gestión de Citas</h4>
@@ -108,7 +108,7 @@
           </div>
         </div>
 
-        <div class="module-item" (click)="navegarA('/oftalmologos')">
+        <div class="module-item" (click)="navegarA('/oftalmologo/listar')">
           <div class="mod-icon green">👨‍⚕️</div>
           <div class="mod-body">
             <h4>Staff de Oftalmólogos</h4>
@@ -117,7 +117,7 @@
           </div>
         </div>
 
-        <div class="module-item" (click)="navegarA('/pacientes')">
+        <div class="module-item" (click)="navegarA('/paciente/listar')">
           <div class="mod-icon dark">🧑‍💼</div>
           <div class="mod-body">
             <h4>Portal del Paciente</h4>
@@ -126,7 +126,7 @@
           </div>
         </div>
 
-        <div class="module-item" (click)="navegarA('/reportes')">
+        <div class="module-item" (click)="navegarA('/reportes/reportecitas')">
           <div class="mod-icon orange">📊</div>
           <div class="mod-body">
             <h4>Reportes & Analítica</h4>
@@ -148,7 +148,7 @@
           <p>Inicia ahora mismo tu pre-diagnóstico preventivo o agenda una evaluación con nuestros especialistas.</p>
         </div>
         <div class="cta-actions">
-          <button class="btn-primary-orange" (click)="navegarA('/citas')">
+          <button class="btn-primary-orange" (click)="navegarA('/citas/insertar')">
             📅 Reservar Cita Ahora
           </button>
           <button class="btn-outline-light" (click)="navegarA('/reportes')">
