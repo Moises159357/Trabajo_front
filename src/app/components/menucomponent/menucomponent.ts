@@ -8,19 +8,15 @@ import { Loginservice } from '../../services/loginservice';
 
 @Component({
   selector: 'app-menucomponent',
-  imports: [
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatMenuModule,
-    RouterLink],
+  imports: [MatIconModule, MatButtonModule, MatToolbarModule, MatMenuModule, RouterLink],
   templateUrl: './menucomponent.html',
   styleUrl: './menucomponent.css',
 })
 export class Menucomponent {
-  constructor(private readonly loginService: Loginservice,
-    private readonly router: Router
-  ) { }
+  constructor(
+    private readonly loginService: Loginservice,
+    private readonly router: Router,
+  ) {}
   get username(): string {
     return this.loginService.getUsername();
   }
@@ -32,10 +28,13 @@ export class Menucomponent {
     this.loginService.logout();
     void this.router.navigateByUrl('/login/OpticVision', { replaceUrl: true });
   }
-  get esAgronomo(): boolean {
+  get esOftalmologo(): boolean {
     return this.loginService.hasAnyRole(['OFTALMOLOGO']);
   }
-   get esAdmin(): boolean {
+  get esAdmin(): boolean {
     return this.loginService.hasAnyRole(['ADMIN']);
+  }
+  get esPaciente(): boolean {
+    return this.loginService.hasAnyRole(['PACIENTE']);
   }
 }
