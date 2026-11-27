@@ -7,7 +7,7 @@ import { forkJoin } from 'rxjs';
 import { Detalle } from '../../../models/detalle.model';
 import { LenteDTO } from '../../../models/LenteDTO';
 import { RecetasDTO } from '../../../models/RecetasDTO';
-import { DetallesService } from '../../../services/detalles.service';
+import { DetallesService } from '../../../services/detallesservice';
 import { Lentesservice } from '../../../services/lentesservice';
 import { Recetasservice } from '../../../services/recetasservice';
 

@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { LenteDTO } from '../../../models/LenteDTO';
 import { RecetasDTO } from '../../../models/RecetasDTO';
-import { DetallesService } from '../../../services/detalles.service';
+import { DetallesService } from '../../../services/detallesservice';
 import { Lentesservice } from '../../../services/lentesservice';
 import { Recetasservice } from '../../../services/recetasservice';
 
@@ -83,7 +83,7 @@ export class Dinsertarcomponent implements OnInit {
       idTratamiento: valores.idTratamiento,
       idIntervencion: valores.idIntervencion,
       idLente: valores.idLente,
-      observaciones: valores.observaciones.trim() || null,
+      observaciones: valores.observaciones,
     }).subscribe({
       next: () => {
         this.guardando = false;
