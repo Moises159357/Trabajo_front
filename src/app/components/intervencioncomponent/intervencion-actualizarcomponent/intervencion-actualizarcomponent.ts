@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { formatLocalDate } from '../../../utils/local-date';
 
 @Component({
   selector: 'app-intervencion-actualizarcomponent',
@@ -108,11 +109,17 @@ export class IntervencionActualizarcomponent implements OnInit {
       return;
     }
 
+    const fecha = formatLocalDate(this.formIntervencion.value.fecha);
+    if (!fecha) {
+      this.mensaje = 'Seleccione una fecha válida para la intervención.';
+      return;
+    }
+
     const dto: IntervencionDTO = {
       idIntervencion: this.formIntervencion.value.codigo,
       idVenta: this.formIntervencion.value.idVenta,
       tipo: this.formIntervencion.value.tipo,
-      fecha: this.formIntervencion.value.fecha,
+      fecha,
       descripcion: this.formIntervencion.value.descripcion,
       indicaciones: this.formIntervencion.value.indicaciones
     };

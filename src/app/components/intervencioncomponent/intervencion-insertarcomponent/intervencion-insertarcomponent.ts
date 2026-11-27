@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Intervencionservice } from '../../../services/intervencionservice';
 import { IntervencionDTO } from '../../../models/IntervencionDTO';
+import { formatLocalDate } from '../../../utils/local-date';
 
 @Component({
   selector: 'app-intervencion-insertarcomponent',
@@ -51,11 +52,17 @@ export class IntervencionInsertarcomponent {
       return;
     }
 
+    const fecha = formatLocalDate(this.formIntervencion.value.fecha);
+    if (!fecha) {
+      this.mensaje = 'Seleccione una fecha válida para la intervención.';
+      return;
+    }
+
     const int: IntervencionDTO = {
       idIntervencion: 0,
       idVenta: this.formIntervencion.value.idVenta,
       tipo: this.formIntervencion.value.tipo,
-      fecha: this.formIntervencion.value.fecha,
+      fecha,
       descripcion: this.formIntervencion.value.descripcion,
       indicaciones: this.formIntervencion.value.indicaciones,
     };

@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CitasDTO } from '../../../models/CitasDTO';
 import { Citaservice } from '../../../services/citaservice';
+import { formatLocalDate } from '../../../utils/local-date';
 
 @Component({
   imports: [MatInputModule, MatDatepickerModule, MatButtonModule, ReactiveFormsModule],
@@ -36,9 +37,15 @@ export class CitasInsertarcomponent {
       this.mensaje = 'Por favor complete todos los campos correctamente.';
       return;
     }
+    const fechaCita = formatLocalDate(this.formCitas.value.fecha);
+    if (!fechaCita) {
+      this.mensaje = 'Seleccione una fecha válida para la cita.';
+      return;
+    }
+
     const cita: CitasDTO = {
       idCitas: 0,
-      fechaCita: this.formCitas.value.fecha.toISOString().split('T')[0],
+      fechaCita,
       estado: this.formCitas.value.estado,
       motivoCita: this.formCitas.value.motivo,
       idPaciente: this.formCitas.value.paciente,

@@ -37,6 +37,7 @@ import { Apiscomponent } from './components/apiscomponent/apiscomponent';
 import { ProductoListarcomponent } from './components/apiscomponent/producto-listarcomponent/producto-listarcomponent';
 import { Reportescomponent } from './components/reportescomponent/reportescomponent';
 import { ReporteCitascomponent } from './components/reportescomponent/reporte-citascomponent/reporte-citascomponent';
+import { ReporteDetallescomponent } from './components/reportescomponent/reporte-detallescomponent/reporte-detallescomponent';
 
 export const routes: Routes = [
     {
@@ -215,6 +216,7 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: 'reportecitas', pathMatch: 'full' },
             { path: 'reportecitas', component: ReporteCitascomponent },
+            { path: 'reportedetalles', component: ReporteDetallescomponent },
         ],
     },
 ];

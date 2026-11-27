@@ -6,7 +6,7 @@
         <form [formGroup]="formCitas" (ngSubmit)="insertarCitas()">
             <mat-form-field>
                 <mat-label>Fecha de la Cita</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="fecha">
+                <input matInput [matDatepicker]="picker" formControlName="fecha" (focus)="picker.open()" readonly>
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>

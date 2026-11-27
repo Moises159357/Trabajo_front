@@ -7,11 +7,17 @@
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Fecha de inicio</mat-label>
-      <input matInput type="date" formControlName="fechaInicio" />
+      <input matInput [matDatepicker]="inicioPicker" formControlName="fechaInicio" (focus)="inicioPicker.open()" readonly />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="inicioPicker"></mat-datepicker-toggle>
+      <mat-datepicker #inicioPicker></mat-datepicker>
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Fecha de fin</mat-label>
-      <input matInput type="date" formControlName="fechaFin" />
+      <input matInput [matDatepicker]="finPicker" formControlName="fechaFin" (focus)="finPicker.open()" readonly />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="finPicker"></mat-datepicker-toggle>
+      <mat-datepicker #finPicker></mat-datepicker>
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Indicaciones</mat-label>

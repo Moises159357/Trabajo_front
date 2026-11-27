@@ -7,6 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { PacienteDTO } from '../../../models/PacienteDTO';
+import { formatLocalDate } from '../../../utils/local-date';
 
 @Component({
   imports: [
@@ -47,6 +48,12 @@ export class PacienteInsertarcomponent {
       this.mensaje = 'Por favor complete todos los campos correctamente.';
       return;
     }
+    const fechaInscripcion = formatLocalDate(this.formPaciente.value.inscripcion);
+    if (!fechaInscripcion) {
+      this.mensaje = 'Seleccione una fecha de inscripción válida.';
+      return;
+    }
+
     const pac: PacienteDTO = {
       idPaciente: 0,
       dni: this.formPaciente.value.dni,
@@ -57,7 +64,7 @@ export class PacienteInsertarcomponent {
       direccion: this.formPaciente.value.direccion,
       telefono: this.formPaciente.value.telefono,
       fechaNacimiento: this.formPaciente.value.nacimiento,
-      fechaInscripcion: this.formPaciente.value.inscripcion
+      fechaInscripcion
     }
     this.pS.insertPaciente(pac).subscribe({
       next: (respuesta) => {

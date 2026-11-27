@@ -24,7 +24,7 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Fecha de Intervención</mat-label>
                 <input matInput [matDatepicker]="picker"
-                    formControlName="fecha">
+                    formControlName="fecha" (focus)="picker.open()" readonly>
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker">
                 </mat-datepicker-toggle>

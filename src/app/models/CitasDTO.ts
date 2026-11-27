@@ -1,6 +1,6 @@
 export class CitasDTO {
   idCitas: number = 0;
-  fechaCita: Date = new Date();
+  fechaCita: string = '';
   estado: string = '';
   motivoCita: string = '';
   idPaciente: number = 0;

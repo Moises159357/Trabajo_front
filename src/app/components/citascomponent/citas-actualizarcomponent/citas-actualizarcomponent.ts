@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CitasDTO } from '../../../models/CitasDTO';
@@ -7,6 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { Citaservice } from '../../../services/citaservice';
+import { formatLocalDate } from '../../../utils/local-date';
 
 @Component({
   imports: [MatInputModule, MatDatepickerModule, MatButtonModule, ReactiveFormsModule],
@@ -15,7 +16,7 @@ import { Citaservice } from '../../../services/citaservice';
   templateUrl: './citas-actualizarcomponent.html',
   providers: [provideNativeDateAdapter()],
 })
-export class CitasActualizarcomponent {
+export class CitasActualizarcomponent implements OnInit {
   idCitas: any = null;
   formCitas!: FormGroup;
   mensaje: string = '';
@@ -28,7 +29,7 @@ export class CitasActualizarcomponent {
     private cdr: ChangeDetectorRef,
   ) {}
 
-  ngOninit(): void {
+  ngOnInit(): void {
     // Recuperar ID desde la URL
     this.idCitas = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -84,9 +85,15 @@ export class CitasActualizarcomponent {
       return;
     }
 
+    const fechaCita = formatLocalDate(this.formCitas.value.fecha);
+    if (!fechaCita) {
+      this.mensaje = 'Seleccione una fecha válida para la cita.';
+      return;
+    }
+
     const dto = {
       idCitas: this.formCitas.value.codigo,
-      fechaCita: this.formCitas.value.fecha.toISOString().split('T')[0],
+      fechaCita,
       estado: this.formCitas.value.estado,
       motivoCita: this.formCitas.value.motivo,
       idPaciente: this.formCitas.value.paciente,

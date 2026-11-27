@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { formatLocalDate } from '../../../utils/local-date';
 
 @Component({
   selector: 'app-tratamiento-actualizarcomponent',
@@ -112,13 +113,19 @@ export class TratamientoActualizarcomponent implements OnInit {
       return;
     }
 
+    const fechaRegistro = formatLocalDate(this.formTratamiento.value.fechaRegistro);
+    if (!fechaRegistro) {
+      this.mensaje = 'Seleccione una fecha de registro válida.';
+      return;
+    }
+
     const dto: TratamientoDTO = {
       idTratamiento: this.idTratamiento,
       nombre: this.formTratamiento.value.nombre,
       tipo: this.formTratamiento.value.tipo,
       duracionDias: this.formTratamiento.value.duracionDias,
       estado: this.formTratamiento.value.estado,
-      fechaRegistro: this.formTratamiento.value.fechaRegistro,
+      fechaRegistro,
       indicaciones: this.formTratamiento.value.indicaciones
     };
 

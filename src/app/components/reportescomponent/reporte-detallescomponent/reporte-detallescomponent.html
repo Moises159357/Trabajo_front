@@ -1,0 +1,120 @@
+<main class="reportes">
+  <h1>Reportes de detalles, lentes y recetas</h1>
+
+  <section class="reporte">
+    <h2>Detalles registrados por historial clínico</h2>
+    @if (cargandoDetalles) {
+      <p class="estado">Cargando detalles...</p>
+    } @else if (errorDetalles) {
+      <p class="error" role="alert">{{ errorDetalles }}</p>
+    } @else if (detalles.length === 0) {
+      <p class="estado">No hay detalles registrados.</p>
+    } @else {
+      <div class="grafico">
+        <canvas baseChart [type]="'bar'" [data]="chartDataDetalles" [options]="chartOptions"></canvas>
+      </div>
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>Detalle</th>
+              <th>Historial</th>
+              <th>Receta</th>
+              <th>Lente</th>
+              <th>Observaciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (detalle of detalles; track detalle.idDetalle) {
+              <tr>
+                <td>{{ detalle.idDetalle }}</td>
+                <td>{{ detalle.idHistorial }}</td>
+                <td>{{ detalle.idReceta }}</td>
+                <td>{{ detalle.idLente }}</td>
+                <td>{{ detalle.observaciones || '-' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+
+  <section class="reporte">
+    <h2>Lentes más usados</h2>
+    @if (cargandoLentes) {
+      <p class="estado">Cargando reporte de lentes...</p>
+    } @else if (errorLentes) {
+      <p class="error" role="alert">{{ errorLentes }}</p>
+    } @else if (lentes.length === 0) {
+      <p class="estado">No hay lentes asociados a detalles.</p>
+    } @else {
+      <div class="grafico">
+        <canvas baseChart [type]="'doughnut'" [data]="chartDataLentes" [options]="chartOptions"></canvas>
+      </div>
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>Lente</th>
+              <th>Marca</th>
+              <th>Modelo</th>
+              <th>Precio</th>
+              <th>Detalles asociados</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (lente of lentes; track lente.idLente) {
+              <tr>
+                <td>{{ lente.idLente }}</td>
+                <td>{{ lente.marca }}</td>
+                <td>{{ lente.modelo }}</td>
+                <td>{{ lente.precio }}</td>
+                <td>{{ lente.totalDetalles }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+
+  <section class="reporte">
+    <h2>Detalles asociados a cada receta</h2>
+    @if (cargandoRecetas) {
+      <p class="estado">Cargando reporte de recetas...</p>
+    } @else if (errorRecetas) {
+      <p class="error" role="alert">{{ errorRecetas }}</p>
+    } @else if (recetas.length === 0) {
+      <p class="estado">No hay recetas registradas.</p>
+    } @else {
+      <div class="grafico">
+        <canvas baseChart [type]="'bar'" [data]="chartDataRecetas" [options]="chartOptions"></canvas>
+      </div>
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>Receta</th>
+              <th>Fecha de inicio</th>
+              <th>Fecha de fin</th>
+              <th>Detalles asociados</th>
+              <th>Indicaciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of recetas; track item.receta.idReceta) {
+              <tr>
+                <td>{{ item.receta.idReceta }}</td>
+                <td>{{ item.receta.fechaInicio }}</td>
+                <td>{{ item.receta.fechaFin }}</td>
+                <td>{{ item.totalDetalles }}</td>
+                <td>{{ item.receta.indicaciones }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+</main>

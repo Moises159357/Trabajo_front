@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { Pacienteservice } from '../../../services/pacienteservice';
 import { PacienteDTO } from '../../../models/PacienteDTO';
+import { formatLocalDate } from '../../../utils/local-date';
 
 @Component({
   imports: [ MatInputModule,
@@ -68,7 +69,7 @@ export class Pacienteactualizarcomponent implements OnInit {
           correo: data.correo,
           direccion: data.direccion,
           telefono: data.telefono,
-          nacimiento: new Date(data.fechaNacimiento + 'T00:00:00'),
+          nacimiento: new Date(String(data.fechaNacimiento).substring(0, 10) + 'T00:00:00'),
           inscripcion: new Date(data.fechaInscripcion + 'T00:00:00')
         })
         this.cdr.detectChanges()
@@ -87,6 +88,12 @@ export class Pacienteactualizarcomponent implements OnInit {
       return
     }
 
+    const fechaInscripcion = formatLocalDate(this.formPaciente.value.inscripcion);
+    if (!fechaInscripcion) {
+      this.mensaje = 'Seleccione una fecha de inscripción válida.';
+      return;
+    }
+
     const dto: PacienteDTO = {
       idPaciente: this.formPaciente.value.codigo,
       dni: this.formPaciente.value.dni,
@@ -96,8 +103,8 @@ export class Pacienteactualizarcomponent implements OnInit {
       correo: this.formPaciente.value.correo,
       direccion: this.formPaciente.value.direccion,
       telefono: this.formPaciente.value.telefono,
-      fechaNacimiento: this.formPaciente.value.nacimiento.toISOString().split('T')[0],
-      fechaInscripcion: this.formPaciente.value.inscripcion.toISOString().split('T')[0]
+      fechaNacimiento: this.formPaciente.value.nacimiento,
+      fechaInscripcion
     }
 
     this.pS.updatePaciente(dto).subscribe({

@@ -3,13 +3,17 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RecetasDTO } from '../../../models/RecetasDTO';
 import { Recetasservice } from '../../../services/recetasservice';
+import { formatLocalDate, parseLocalDate } from '../../../utils/local-date';
 
 @Component({
   selector: 'app-ractualizarcomponent',
-  imports: [MatInputModule, MatFormFieldModule, MatButtonModule, ReactiveFormsModule],
+  imports: [MatInputModule, MatFormFieldModule, MatDatepickerModule, MatButtonModule, ReactiveFormsModule],
+  providers: [provideNativeDateAdapter()],
   templateUrl: './ractualizarcomponent.html',
   styleUrl: './ractualizarcomponent.css',
 })
@@ -44,20 +48,30 @@ export class Ractualizarcomponent implements OnInit {
 
   buscarPorId(): void {
     this.rS.listId(this.idReceta).subscribe({
-      next: (data: RecetasDTO) => this.formReceta.patchValue(data),
+      next: (data: RecetasDTO) => {
+        const fechaInicio = parseLocalDate(data.fechaInicio);
+        const fechaFin = parseLocalDate(data.fechaFin);
+        if (!fechaInicio || !fechaFin) {
+          this.mensaje = 'La receta contiene una fecha inválida.';
+          return;
+        }
+        this.formReceta.patchValue({ ...data, fechaInicio, fechaFin });
+      },
       error: (error) => this.mensaje = 'No se encontró la receta: ' + error.message,
     });
   }
 
   actualizarReceta(): void {
-    if (this.formReceta.invalid) {
-      this.mensaje = 'Por favor complete todos los campos correctamente.';
+    const fechaInicio = formatLocalDate(this.formReceta.value.fechaInicio);
+    const fechaFin = formatLocalDate(this.formReceta.value.fechaFin);
+    if (this.formReceta.invalid || !fechaInicio || !fechaFin) {
+      this.mensaje = 'Seleccione fechas válidas y complete los demás campos.';
       return;
     }
     const receta: RecetasDTO = {
       idReceta: this.idReceta,
-      fechaInicio: this.formReceta.value.fechaInicio ?? '',
-      fechaFin: this.formReceta.value.fechaFin ?? '',
+      fechaInicio,
+      fechaFin,
       indicaciones: this.formReceta.value.indicaciones ?? '',
     };
     this.rS.updateReceta(receta).subscribe({

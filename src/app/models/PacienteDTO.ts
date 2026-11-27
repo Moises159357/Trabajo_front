@@ -7,6 +7,6 @@ export class PacienteDTO {
   correo: string = '';
   direccion: string = '';
   telefono: string = '';
-  fechaNacimiento: Date = new Date();
-  fechaInscripcion: Date = new Date();
+  fechaNacimiento: Date | string = new Date();
+  fechaInscripcion: string = '';
 }

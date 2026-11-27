@@ -5,5 +5,5 @@ export class TratamientoDTO {
     tipo: string = '';
     nombre: string = '';
     estado: string = '';
-    fechaRegistro: Date = new Date();
+    fechaRegistro: string = '';
 }

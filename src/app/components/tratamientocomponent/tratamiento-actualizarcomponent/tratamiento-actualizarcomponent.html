@@ -61,7 +61,9 @@
                 <mat-label>Fecha de Registro</mat-label>
                 <input matInput
                     [matDatepicker]="picker"
-                    formControlName="fechaRegistro">
+                    formControlName="fechaRegistro"
+                    (focus)="picker.open()"
+                    readonly>
 
                 <mat-hint>MM/DD/YYYY</mat-hint>
 

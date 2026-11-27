@@ -1,0 +1,96 @@
+:host {
+  display: block;
+}
+
+.reportes {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 24px 28px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(15, 36, 56, 0.12);
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  color: #0f2438;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 28px;
+  font-size: 26px;
+}
+
+h2 {
+  margin: 0 0 18px;
+  font-size: 21px;
+}
+
+.reporte + .reporte {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 2px solid rgba(16, 185, 129, 0.35);
+}
+
+.grafico {
+  position: relative;
+  width: 100%;
+  max-width: 850px;
+  height: 340px;
+  margin: 0 auto 20px;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #263746;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #dce5eb;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #f1f7f6;
+  color: #0f2438;
+}
+
+.estado,
+.error {
+  text-align: center;
+  padding: 20px;
+}
+
+.error {
+  color: #b42318;
+}
+
+@media (max-width: 600px) {
+  .reportes {
+    margin: 15px;
+    padding: 18px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  .grafico {
+    height: 280px;
+  }
+}

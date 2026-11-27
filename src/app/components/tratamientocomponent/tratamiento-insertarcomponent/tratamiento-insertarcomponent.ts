@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Tratamientoservice } from '../../../services/tratamientoservice';
 import { TratamientoDTO } from '../../../models/TratamientoDTO';
+import { formatLocalDate } from '../../../utils/local-date';
 
 @Component({
   selector: 'app-tratamiento-insertarcomponent',
@@ -47,13 +48,19 @@ export class TratamientoInsertarcomponent {
       return
     }
 
+    const fechaRegistro = formatLocalDate(this.formTratamiento.value.fechaRegistro);
+    if (!fechaRegistro) {
+      this.mensaje = 'Seleccione una fecha de registro válida.';
+      return;
+    }
+
     const tra: TratamientoDTO = {
       idTratamiento: 0,
       nombre: this.formTratamiento.value.nombre,
       tipo: this.formTratamiento.value.tipo,
       duracionDias: this.formTratamiento.value.duracionDias,
       estado: this.formTratamiento.value.estado,
-      fechaRegistro: this.formTratamiento.value.fechaRegistro,
+      fechaRegistro,
       indicaciones: this.formTratamiento.value.indicaciones
     }
 

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Detalle } from '../models/detalle.model';
+import { ReporteLenteDTO } from '../models/ReporteLenteDTO';
 
 @Injectable({ providedIn: 'root' })
 export class DetallesService {
@@ -20,6 +21,10 @@ export class DetallesService {
 
   buscarPorHistorial(idHistorial: number): Observable<Detalle[]> {
     return this.http.get<Detalle[]>(`${this.apiUrl}/buscarPorHistorial/${idHistorial}`);
+  }
+
+  lentesMasUsados(): Observable<ReporteLenteDTO[]> {
+    return this.http.get<ReporteLenteDTO[]>(`${this.apiUrl}/lentesMasUsados`);
   }
 
   crear(detalle: Omit<Detalle, 'idDetalle'>): Observable<Detalle> {
